@@ -105,6 +105,27 @@ const days = [
         category: "DB Mass", db: true
       },
       {
+        name: "DB Hammer Curl",
+        sets: "3", reps: "10–12",
+        note: "Posisi sama dengan bicep curl tapi telapak saling berhadapan (seperti pegang palu). Siku tetap di sisi badan. Turunkan pelan. Terasa di sisi luar lengan bawah.",
+        why: "Latih brachialis & brachioradialis — otot ini yang bikin lengan bawah tebal & penuh dari semua sisi",
+        category: "Forearm", db: true
+      },
+      {
+        name: "DB Wrist Curl",
+        sets: "3", reps: "15–20",
+        note: "Duduk di kursi, lengan bawah di atas paha, telapak menghadap ke atas. Pegang dumbbell, turunkan pergelangan tangan ke bawah, lalu kerutkan ke atas. Gerakannya kecil tapi burning. Pakai beban sangat ringan.",
+        why: "Forearm flexors — otot depan lengan bawah. Bangun ketebalan & kekuatan grip saat deadlift & pull-up",
+        category: "Forearm", db: true
+      },
+      {
+        name: "Reverse Curl",
+        sets: "3", reps: "10–12",
+        note: "Sama seperti bicep curl tapi telapak menghadap ke BAWAH (pronated grip). Angkat dumbbell ke atas, turunkan pelan. Lebih berat dari curl biasa — pakai beban lebih ringan.",
+        why: "Forearm extensors & brachioradialis — sisi atas lengan bawah. Tanpa ini lengan bawah terlihat tidak proporsional",
+        category: "Forearm", db: true
+      },
+      {
         name: "Negative Pull-Up",
         sets: "3", reps: "3–5",
         note: "Naik ke posisi chin over bar pakai kursi/lompat. Lalu turunkan badan seperlahan mungkin (target 5–8 detik). Ini cara paling efektif belajar pull-up.",
@@ -183,6 +204,13 @@ const days = [
         category: "Core", db: false
       },
       {
+        name: "V-Up (atau Tuck V-Up)",
+        sets: "3", reps: "8–12",
+        note: "Berbaring lurus, angkat kaki & badan bersamaan, raih kaki dengan tangan di titik puncak. Jika terlalu berat: TUCK V-UP — lutut ditekuk saat naik. Turunkan perlahan, jangan banting ke lantai. Kontrol = hasil lebih baik.",
+        why: "Kontraksi penuh rectus abdominis dari atas & bawah sekaligus — abs tengah paling optimal. Juga bangun hip flexor untuk L-sit & hanging leg raise",
+        category: "Core", db: false
+      },
+      {
         name: "Side Plank",
         sets: "3", reps: "20–35 detik/sisi",
         note: "Siku di lantai, tubuh lurus dari kepala ke kaki dalam posisi miring. Angkat pinggul — jangan biarkan turun ke bawah. Mulai dari lutut jika terlalu berat. Kerjakan kiri & kanan.",
@@ -215,6 +243,20 @@ const days = [
         sets: "3", reps: "15 per kaki",
         note: "Berdiri di tepi tangga atau lantai datar, angkat satu kaki. Naik setinggi mungkin dengan jari kaki, tahan 1 detik, turunkan pelan sampai tumit di bawah level tangga. Bisa pegang tembok untuk keseimbangan.",
         why: "Betis (calves) = kaki terlihat lengkap & proporsional. Satu-satunya cara efektif latih otot ini",
+        category: "Lower Body", db: false
+      },
+      {
+        name: "Toe Raise (Tibialis Raise)",
+        sets: "3", reps: "15–20",
+        note: "Berdiri tegak, punggung ke tembok jika perlu. Angkat ujung kaki (jari kaki ke atas) setinggi mungkin sambil tumit tetap di lantai. Tahan 1 detik di atas. Terasa di depan tulang kering.",
+        why: "Tibialis anterior (depan betis) — cegah shin splints & kram saat lari/lompat. Pasangan wajib calf raise",
+        category: "Lower Body", db: false
+      },
+      {
+        name: "Side-Lying Hip Abduction",
+        sets: "3", reps: "15 per sisi",
+        note: "Berbaring miring, kaki lurus. Angkat kaki atas setinggi pinggul (sekitar 45°), tahan 1 detik, turunkan pelan. Jaga badan tidak berputar ke belakang. Bisa tambah dumbbell di paha untuk beban.",
+        why: "Gluteus medius (glutes samping) — cegah lutut ambles ke dalam saat squat & lari. Sering jadi penyebab nyeri lutut kalau tidak dilatih",
         category: "Lower Body", db: false
       },
       {
@@ -390,6 +432,13 @@ const days = [
         why: "Rotasi = oblique bekerja maksimal. Bagian ini yang bikin pinggang terlihat terbentuk",
         category: "Oblique", db: false
       },
+      {
+        name: "V-Up AMRAP",
+        sets: "3", reps: "semampu mungkin",
+        note: "Sama kayak push-up AMRAP — catat rekormu! Kalau udah lelah di tengah set, ganti ke Tuck V-Up (lutut ditekuk) dan lanjutkan. Jangan berhenti total.",
+        why: "Volume tinggi di V-up = abs makin defined. Sabtu adalah hari benchmark — ukur progress abs kamu",
+        category: "Benchmark", db: false
+      },
     ],
     cooldown: "Jalan santai 5 menit → full body static stretch 10 menit. Jangan skip ini setelah sesi cardio.",
     skillTarget: "📊 CATAT hari ini: Push-Up = ___ reps | Row = ___ reps | Berat badan = ___kg",
@@ -473,6 +522,7 @@ const categoryColors = {
   "Benchmark":"#FFE66D","Cardio":"#FF8FA3","Finisher":"#FF6B35",
   "DB Mass":"#FF8FA3","Compound":"#C77DFF","Bodyweight":"#aaa",
   "Oblique":"#a8d8ea","Lower Body":"#FFE66D","Lower Back":"#f4a261",
+  "Forearm":"#e9c46a",
 };
 
 export default function App() {
