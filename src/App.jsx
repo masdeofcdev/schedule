@@ -171,10 +171,17 @@ const days = [
         category: "Forearm", db: true
       },
       {
-        name: "🔁 SUPERSET: Wrist Curl + Wrist Extension",
-        sets: "3", reps: "15 + 12–15",
-        note: "Wrist curl dulu (telapak atas, kerutkan ke atas — FLEXORS) → langsung Wrist extension (telapak bawah, angkat ke atas — EXTENSORS, lebih lemah, pakai beban lebih ringan) → istirahat 60 detik. Forearm recovery cepat — targetkan close to failure tiap set.",
-        why: "Lengkapi forearm 360°: flexors (depan) + extensors (atas). Forearm bisa handle 12–15 set/minggu karena recovery cepat",
+        name: "Wrist Curl",
+        sets: "3", reps: "15–20",
+        note: "Duduk, lengan bawah di atas paha, telapak ke atas. Turunkan pergelangan ke bawah, kerutkan ke atas setinggi mungkin. Gerakannya kecil tapi burning. Pakai beban sangat ringan. Close to failure di set terakhir.",
+        why: "Forearm flexors (depan lengan bawah) — komponen pertama dari lengan bawah yang tebal",
+        category: "Forearm", db: true
+      },
+      {
+        name: "Wrist Extension",
+        sets: "3", reps: "12–15",
+        note: "Telapak ke bawah di atas paha. Angkat pergelangan ke atas setinggi mungkin, turunkan pelan. Jauh lebih lemah dari wrist curl — pakai beban yang lebih ringan lagi. Ini bukan kelemahan, memang anatomisnya begitu.",
+        why: "Forearm extensors (atas lengan bawah) — sering dilewat, padahal penting untuk forearm yang seimbang & injury prevention",
         category: "Forearm", db: true
       },
       {
@@ -316,38 +323,24 @@ const days = [
     restTime: "60–90 detik antar set",
     exercises: [
       {
-        name: "Pike Push-Up",
-        sets: "4", reps: "8–10",
-        note: "Badan V terbalik, tangan lebih lebar dari bahu. Turunkan kepala ke lantai di antara tangan. Makin tegak badan = makin berat. Ini latihan bahu, bukan dada.",
-        why: "Mid delt dari sudut vertikal — mulai sesi bahu dengan gerakan compound dulu",
+        name: "🔁 SUPERSET: Pike Push-Up ↔ Face Pull",
+        sets: "4", reps: "8–10 + 12–15",
+        note: "Pike Push-Up dulu (push — bahu depan & samping) → langsung Face Pull tanpa istirahat (pull — bahu belakang & mid-back) → istirahat 75 detik. Ini antagonist superset sejati: saat pike PU kerja, rear delt istirahat. Sebaliknya saat face pull kerja, anterior delt istirahat.",
+        why: "Antagonist superset ideal: push vs pull untuk bahu. Efisiensi waktu tinggi, tidak ada performance drop karena otot berlawanan bergantian istirahat",
         category: "Shoulder", db: false
       },
       {
         name: "DB Lateral Raise — 3 Variasi",
         sets: "4", reps: "12–15",
-        note: "Set 1: berdiri tegak. Set 2: condong ke depan 15° (lebih kena mid delt). Set 3: leaning ke sisi (stretch lebih dalam). Set 4: pilih yang paling kena. Jempol sedikit ke bawah. Beban SANGAT RINGAN. Turunkan pelan.",
-        why: "INTI V-SHAPE — lateral delt yang tebal dari berbagai sudut = bahu yang lebar dari semua arah",
+        note: "Set 1: berdiri tegak. Set 2: condong ke depan 15°. Set 3: leaning ke sisi. Set 4: pilih yang paling terasa. Jempol sedikit ke bawah. Beban SANGAT RINGAN. Turunkan pelan — ini kuncinya.",
+        why: "INTI V-SHAPE — lateral delt dari berbagai sudut. Latihan mandiri tanpa superset karena tidak ada antagonist isolation yang pas",
         category: "DB Mass", db: true
       },
       {
-        name: "Face Pull (handuk/tali)",
-        sets: "4", reps: "12–15",
-        note: "Ikat handuk di handle pintu setinggi wajah. Tarik ke arah wajah, rentangkan tangan keluar, siku LEBIH TINGGI dari bahu. Tahan 1 detik. Terasa di belakang bahu dan trapezius tengah.",
-        why: "Mid delt posterior + rear delt — melengkapi lateral raise untuk bahu 3D. Tanpa ini bahu hanya terlihat lebar dari depan",
-        category: "Shoulder", db: false
-      },
-      {
-        name: "DB Rear Delt Fly",
-        sets: "3", reps: "12–15",
-        note: "Bungkuk 45–90°, dumbbell tergantung. Angkat ke samping dengan siku sedikit ditekuk hingga sejajar bahu. JANGAN pakai momentum — ini harus terasa di belakang bahu. Beban sangat ringan.",
-        why: "Bahu belakang 3D — cegah postur bungkuk & bikin bahu terlihat berisi dari samping",
-        category: "DB Mass", db: true
-      },
-      {
-        name: "DB Arnold Press",
-        sets: "3", reps: "10–12",
-        note: "Mulai telapak menghadap wajah, tekan ke atas sambil putar keluar hingga telapak ke depan. Turunkan balik dengan gerakan sebaliknya. Lambat & terkontrol.",
-        why: "Latih semua 3 kepala bahu dalam 1 gerakan — volume bahu total yang tinggi",
+        name: "🔁 SUPERSET: DB Front Raise ↔ Rear Delt Fly",
+        sets: "3", reps: "12–15 + 12–15",
+        note: "Front Raise dulu (angkat dumbbell ke depan setinggi bahu, siku sedikit ditekuk — anterior delt) → langsung Rear Delt Fly tanpa istirahat (bungkuk, angkat ke samping — posterior delt) → istirahat 75 detik. Dua isolation murni, bukan compound.",
+        why: "Antagonist isolation sempurna: anterior delt (depan) vs posterior delt (belakang). Satu istirahat penuh saat yang lain kerja — zero performance drop",
         category: "DB Mass", db: true
       },
       {
@@ -365,10 +358,10 @@ const days = [
         category: "Benchmark", db: false
       },
       {
-        name: "Squat Jump + Mountain Climbers",
+        name: "🔥 FINISHER CIRCUIT: Squat Jump → Mountain Climbers",
         sets: "3", reps: "12 + 30 detik",
-        note: "Superset cardio finisher. Squat jump 12 reps → langsung mountain climbers 30 detik → istirahat 60 detik. Detak jantung naik = kalori terbakar + kondisi tubuh meningkat.",
-        why: "Endurance finisher — jaga kebugaran kardiovaskular tanpa mengorbankan hari latihan khusus",
+        note: "Ini bukan superset antagonist — ini cardio finisher circuit. Squat jump 12 reps → mountain climbers 30 detik → istirahat 60 detik. Tujuannya naikkan detak jantung di akhir sesi, bukan stimulus otot.",
+        why: "Endurance + kondisi kardiovaskular. Berbeda fungsi dari superset antagonist — ini untuk kebugaran total",
         category: "Cardio", db: false
       },
     ],
