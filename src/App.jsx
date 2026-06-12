@@ -297,10 +297,10 @@ const days = [
         category: "Core", db: false
       },
       {
-        name: "Side Plank",
-        sets: "3", reps: "20–35 detik/sisi",
-        note: "Siku di lantai, tubuh lurus dalam posisi miring. Angkat pinggul. Mulai dari lutut jika terlalu berat.",
-        why: "Oblique primer — perut samping kencang = pinggang terlihat ramping",
+        name: "Side Plank Dip",
+        sets: "3", reps: "12–15 per sisi",
+        note: "Dari posisi side plank (siku di lantai), turunkan pinggul hampir ke lantai lalu angkat kembali setinggi mungkin. Gerakkan hanya pinggul — badan tetap lurus. Kerjakan kiri dulu selesai, baru kanan.",
+        why: "Oblique dinamis — jauh lebih efektif dari static side plank karena ada kontraksi & ekstensi penuh tiap rep",
         category: "Oblique", db: false
       },
       {
