@@ -1,390 +1,311 @@
 import { useState } from "react";
 
+// ===== PUSH DAY CONTENT =====
+const pushWarmup = "10 arm circles → 10 shoulder rolls → 5 pike push-up ringan (aktivasi bahu) → 5 scapular push-up";
+const pushExercises = [
+  {
+    name: "Push-Up",
+    sets: "4", reps: "6–12",
+    note: "Tangan selebar bahu, siku 45°. Turunkan dada sampai 2–3cm dari lantai. Jika belum kuat mulai dari Incline (tangan di meja). Minimal 2 set terakhir close to failure.",
+    why: "Compound dada + triceps sekaligus. Triceps sudah kena di sini",
+    category: "Main", db: false
+  },
+  {
+    name: "DB Floor Press (Flat)",
+    sets: "4", reps: "10–12",
+    note: "Berbaring flat di lantai, dumbbell di samping dada, siku 45°. Tekan ke atas penuh. Turunkan pelan 3 detik. Lantai = safety stopper alami.",
+    why: "Flat press = massa dada tengah & bawah. Fondasi chest yang tebal",
+    category: "DB Mass", db: true
+  },
+  {
+    name: "DB Incline Press",
+    sets: "3", reps: "10–12",
+    note: "Sandarkan punggung atas di tepi kursi/kasur rendah sudut 30–45°, atau ganjal punggung dengan bantal tebal di lantai. Dumbbell di bahu, tekan ke atas. Terasa lebih di dada atas.",
+    why: "Incline press = dada atas (upper chest) — bikin dada terlihat penuh & berisi dari semua sudut",
+    category: "DB Mass", db: true
+  },
+  {
+    name: "DB Shoulder Press",
+    sets: "4", reps: "10–12",
+    note: "Duduk tegak di kursi, dumbbell di bahu setinggi telinga. Tekan ke atas hingga lengan lurus, jangan kunci siku penuh. Turunkan kembali ke bahu dengan kontrol. Core aktif, punggung tidak melengkung.",
+    why: "Bahu #1 — vertical press compound untuk massa bahu keseluruhan",
+    category: "DB Mass", db: true
+  },
+  {
+    name: "DB Lateral Raise",
+    sets: "4", reps: "12–15",
+    note: "Angkat ke samping hingga sejajar bahu, jempol sedikit ke bawah. Variasikan tiap set: tegak → condong ke depan → leaning ke sisi. Beban SANGAT RINGAN. Turunkan pelan — ini yang bikin kena.",
+    why: "Bahu #2 — KUNCI V-SHAPE. Satu-satunya cara isolasi lateral delt murni",
+    category: "DB Mass", db: true
+  },
+  {
+    name: "🔁 SUPERSET: DB Front Raise ↔ Rear Delt Fly",
+    sets: "3", reps: "12–15 + 12–15",
+    note: "Front Raise (angkat ke depan setinggi bahu — anterior delt) → langsung Rear Delt Fly tanpa istirahat (bungkuk, angkat ke samping — posterior delt) → istirahat 75 detik. Antagonist isolation sempurna.",
+    why: "Bahu #3 & #4 — anterior vs posterior delt. Bahu 3D dari semua sudut",
+    category: "Shoulder", db: true
+  },
+  {
+    name: "Diamond Push-Up",
+    sets: "3", reps: "6–10",
+    note: "Tangan membentuk berlian di bawah dada. Siku menutup rapat ke badan saat turun. Lebih susah dari push-up biasa — mulai dari lutut jika perlu.",
+    why: "Triceps #1 — bodyweight, melatih semua kepala triceps terutama medial head",
+    category: "Bodyweight", db: false
+  },
+  {
+    name: "DB Overhead Tricep Extension",
+    sets: "3", reps: "12",
+    note: "Duduk tegak, pegang satu dumbbell dengan dua tangan di atas kepala. Turunkan ke belakang kepala (siku tetap dekat telinga), angkat kembali. Gerakannya hanya di siku.",
+    why: "Triceps #2 — long head triceps (bagian terbesar). Tidak bisa dikena maksimal dari push-up atau dip saja",
+    category: "DB Mass", db: true
+  },
+  {
+    name: "Chair Dip",
+    sets: "3", reps: "8–12",
+    note: "Tangan di tepi kursi, kaki lurus ke depan. Turunkan badan hingga siku 90°. Jaga bahu tetap rendah. Untuk lebih berat: kaki di atas kursi lain.",
+    why: "Triceps #3 — lateral head & overall triceps mass. Compound tricep terbaik untuk pemula",
+    category: "Bodyweight", db: false
+  },
+];
+const pushCooldown = "Chest doorway stretch 45 detik → shoulder cross-body stretch 30 detik/sisi → tricep overhead stretch 30 detik/sisi";
+const pushSkill = "📈 Progression: Incline PU → Full PU → Diamond PU → Archer PU | Pike PU → Handstand Wall Hold";
+
+// ===== PULL DAY CONTENT =====
+const pullWarmup = "Dead hang 20 detik → scapular pull-up 8 reps → arm swings → shoulder dislocates pakai handuk";
+const pullExercises = [
+  {
+    name: "Dead Hang",
+    sets: "3", reps: "20–30 detik",
+    note: "Gantung di pull-up bar, genggam kuat, biarkan bahu naik alami. Fokus napas dan grip. Ini latihan nyata, bukan sekadar pemanasan.",
+    why: "Grip strength + dekompresi tulang belakang. Grip lemah = pull-up gagal di tengah",
+    category: "Foundation", db: false
+  },
+  {
+    name: "Australian Row — 3 Variasi Grip",
+    sets: "4", reps: "8–12",
+    note: "Tubuh lurus, tarik dada ke meja. Rotasi grip tiap set: pronated (telapak bawah) → supinated (telapak atas) → neutral → pilih yang paling kena. Makin rebah = makin susah.",
+    why: "Variasi grip = semua bagian lat terlatih. Kunci sayap lebar untuk V-shape",
+    category: "Main", db: false
+  },
+  {
+    name: "Straight Arm Pull (handuk/tali)",
+    sets: "3", reps: "12–15",
+    note: "Ikat handuk di atas pintu. Pegang kedua ujung, tangan LURUS sepanjang gerakan. Tarik ke bawah hingga sejajar pinggul. Rasakan lat stretch di atas dan kontraksi di bawah.",
+    why: "Isolasi lat murni tanpa bicep bantu — memastikan sayap benar-benar berkembang",
+    category: "Main", db: false
+  },
+  {
+    name: "DB Bent-Over Row",
+    sets: "3", reps: "10–12",
+    note: "Bungkuk 45°, punggung LURUS. Tarik dumbbell ke pinggang, tahan 1 detik, turunkan pelan. Jangan ayun badan — kekuatan dari punggung, bukan momentum.",
+    why: "Ketebalan punggung (mid-back, rhomboids) — punggung lebar DAN tebal",
+    category: "DB Mass", db: true
+  },
+  {
+    name: "Negative Pull-Up",
+    sets: "3", reps: "3–5 (turun 5–8 detik)",
+    note: "Naik ke posisi chin over bar pakai kursi atau lompat. Lalu turunkan badan seperlahan mungkin. Target 5–8 detik per rep. Catat waktu tiap minggu.",
+    why: "Cara tercepat bangun kekuatan pull-up dari nol",
+    category: "Progression", db: false
+  },
+  {
+    name: "DB Bicep Curl",
+    sets: "3", reps: "10–12",
+    note: "Siku menempel di sisi badan. Angkat bergantian atau bersamaan. Turunkan PELAN 3 detik. Minimal 2 set terakhir close to failure.",
+    why: "Bicep berisi = lengan berotot dari semua sudut",
+    category: "DB Mass", db: true
+  },
+  {
+    name: "Reverse Curl (Brachioradialis)",
+    sets: "3", reps: "10–12",
+    note: "Telapak menghadap ke BAWAH. Angkat dumbbell ke atas, turunkan pelan. Pakai beban lebih ringan dari bicep curl. Brachioradialis adalah primary mover di sini, bukan bicep.",
+    why: "Brachioradialis = otot paling dominan di lengan bawah. Reverse curl lebih efektif dari hammer curl untuk otot ini",
+    category: "Forearm", db: true
+  },
+  {
+    name: "DB Hammer Curl",
+    sets: "3", reps: "10–12",
+    note: "Telapak saling berhadapan. Siku tetap di sisi badan. Turunkan pelan 3 detik.",
+    why: "Brachialis & brachioradialis dari sudut berbeda — lengan bawah tebal dari semua sisi",
+    category: "Forearm", db: true
+  },
+  {
+    name: "Wrist Curl",
+    sets: "3", reps: "15–20",
+    note: "Duduk, lengan bawah di atas paha, telapak ke atas. Turunkan pergelangan ke bawah, kerutkan ke atas setinggi mungkin. Pakai beban sangat ringan. Close to failure di set terakhir.",
+    why: "Forearm flexors — komponen depan lengan bawah yang tebal",
+    category: "Forearm", db: true
+  },
+  {
+    name: "Superman Hold",
+    sets: "3", reps: "10–12 (tahan 2 detik)",
+    note: "Tengkurap, tangan lurus ke depan. Angkat dada, tangan, dan kaki bersamaan. Tahan 2 detik, turunkan pelan. Rasakan kontraksi di punggung bawah.",
+    why: "Lower back (erector spinae) — cegah cedera deadlift & squat, bangun postur tegak",
+    category: "Lower Back", db: false
+  },
+];
+const pullCooldown = "Lat stretch gantung rileks 20 detik → bicep wall stretch 30 detik/sisi → child's pose → knee-to-chest 30 detik/sisi";
+const pullSkill = "📈 Progression: Australian Row → Negative Pull-Up → Full Pull-Up → Chest-to-Bar → Muscle-Up";
+
+// ===== LEGS & CORE DAY CONTENT =====
+const legsWarmup = "10 hip circles tiap arah → 10 leg swings per kaki → 10 glute bridge → 30 detik deep squat hold";
+const legsExercises = [
+  {
+    name: "DB Goblet Squat",
+    sets: "4", reps: "10–12",
+    note: "Pegang 1 dumbbell di depan dada dengan dua tangan. Squat dalam, siku masuk di antara lutut. Dorong lantai saat naik. Punggung tetap tegak.",
+    why: "Quad + glutes compound — squat paling aman & efektif untuk pemula",
+    category: "DB Mass", db: true
+  },
+  {
+    name: "DB Romanian Deadlift",
+    sets: "3", reps: "10–12",
+    note: "Dorong pinggul ke belakang, turunkan dumbbell mengikuti kaki hingga terasa tarikan di hamstring. Punggung LURUS. Dorong pinggul maju saat naik.",
+    why: "Hamstring & glutes — dua otot terbesar di tubuh",
+    category: "DB Mass", db: true
+  },
+  {
+    name: "Reverse Lunge",
+    sets: "3", reps: "8–10 per kaki",
+    note: "Langkah ke BELAKANG. Turunkan lutut belakang hampir ke lantai. Dorong kembali dari kaki depan. Bisa pegang tembok untuk keseimbangan.",
+    why: "Quad + glutes + hip flexor — lunge mundur lebih aman untuk lutut pemula",
+    category: "Bodyweight", db: false
+  },
+  {
+    name: "Glute Bridge",
+    sets: "3", reps: "15 (tahan 2 detik di atas)",
+    note: "Berbaring, lutut ditekuk. Tekan tumit ke lantai, angkat pinggul hingga tubuh lurus dari bahu ke lutut. Peras glutes keras di atas.",
+    why: "Aktifkan gluteus maximus — glutes yang kuat = postur lebih baik & kaki lebih berisi",
+    category: "Bodyweight", db: false
+  },
+  {
+    name: "Side-Lying Hip Abduction",
+    sets: "3", reps: "15 per sisi",
+    note: "Berbaring miring, kaki lurus. Angkat kaki atas setinggi pinggul, tahan 1 detik, turunkan pelan. Jaga badan tidak berputar.",
+    why: "Gluteus medius — cegah lutut ambles ke dalam saat squat",
+    category: "Lower Body", db: false
+  },
+  {
+    name: "🔁 SUPERSET: Calf Raise + Toe Raise",
+    sets: "3", reps: "15/kaki + 15–20",
+    note: "Calf raise (tumit naik setinggi mungkin) → langsung Toe raise (jari kaki naik, tumit di lantai) → istirahat 60 detik. Antagonist plantarflexion vs dorsiflexion.",
+    why: "Betis depan & belakang sekaligus — antagonist sejati, satu istirahat saat yang lain kerja",
+    category: "Lower Body", db: false
+  },
+  {
+    name: "Dead Bug",
+    sets: "3", reps: "8–10 per sisi",
+    note: "Berbaring, angkat tangan & lutut 90°. Turunkan tangan kanan & kaki kiri bersamaan, punggung bawah tetap di lantai. Kembali, ganti sisi. PERLAHAN.",
+    why: "Deep core stability — fondasi wajib semua gerakan calisthenics lanjutan",
+    category: "Core", db: false
+  },
+  {
+    name: "V-Up (atau Tuck V-Up)",
+    sets: "3", reps: "8–12",
+    note: "Angkat kaki & badan bersamaan, raih kaki di titik puncak. Jika berat: Tuck V-Up (lutut ditekuk). Turunkan perlahan.",
+    why: "Kontraksi full rectus abdominis dari atas & bawah sekaligus",
+    category: "Core", db: false
+  },
+  {
+    name: "Side Plank Dip",
+    sets: "3", reps: "12–15 per sisi",
+    note: "Dari posisi side plank (siku di lantai), turunkan pinggul hampir ke lantai lalu angkat kembali setinggi mungkin. Gerakkan hanya pinggul — badan tetap lurus. Kerjakan kiri dulu selesai, baru kanan.",
+    why: "Oblique dinamis — jauh lebih efektif dari static side plank karena ada kontraksi & ekstensi penuh tiap rep",
+    category: "Oblique", db: false
+  },
+  {
+    name: "Bicycle Crunch",
+    sets: "3", reps: "10–12 per sisi (pelan)",
+    note: "Tangan di belakang kepala, angkat bahu, bawa siku kanan ke lutut kiri sambil luruskan kaki kanan. Ganti sisi. PELAN — 2 detik per gerakan.",
+    why: "Oblique dinamis + abs tengah — definisi perut samping",
+    category: "Oblique", db: false
+  },
+];
+const legsCooldown = "Hip flexor lunge stretch 40 detik/sisi → hamstring stretch 40 detik/kaki → side stretch berdiri 30 detik/sisi → calf stretch 30 detik/kaki";
+const legsSkill = "📈 Progression: Goblet Squat → Bulgarian Split Squat → Shrimp Squat → Pistol Squat";
+
+// ===== REST DAY CONTENT (1x per cycle) =====
+const restSectionsContent = [
+  {
+    title: "✅ BOLEH DILAKUKAN",
+    color: "#A8E6CF",
+    items: [
+      { name: "Jalan santai 15–20 menit", duration: "—", note: "Untuk sirkulasi darah ringan saja. Bukan olahraga." },
+      { name: "Foam rolling / self-massage", duration: "10 menit", note: "Otot yang masih pegal. Tekan titik yang pegel, tahan 30 detik." },
+      { name: "Stretching ringan", duration: "10 menit", note: "Hanya yang nyaman, tidak sampai batas. Ini recovery bukan sesi flexibility." },
+      { name: "Tidur 7–9 jam malam ini", duration: "—", note: "Growth hormone 70% diproduksi saat tidur dalam. Prioritas utama — besok langsung Push lagi." },
+      { name: "Makan cukup protein & kalori", duration: "—", note: "Hari istirahat bukan berarti makan sedikit. Otot masih butuh bahan untuk rebuild." },
+    ]
+  },
+  {
+    title: "❌ HINDARI",
+    color: "#FF8FA3",
+    items: [
+      { name: "Latihan resistance apapun", duration: "—", note: "Semua otot baru dilatih 3 hari berturut-turut (Push-Pull-Legs). Butuh recovery penuh sebelum siklus ulang." },
+      { name: "Kardio intensif / HIIT", duration: "—", note: "Akan memperlambat recovery otot menjelang siklus berikutnya." },
+      { name: "Skip makan", duration: "—", note: "Recovery = kalori + protein cukup. Makan kurang = otot tidak tumbuh optimal." },
+    ]
+  },
+  {
+    title: "📓 QUICK CHECK-IN (5 menit)",
+    color: "#C77DFF",
+    items: [
+      { name: "Timbang berat badan", duration: "—", note: "Pagi sebelum makan. Naik 0.3–0.7kg/minggu = on track. Tidak naik = kurang kalori." },
+      { name: "Catat rekor latihan terakhir", duration: "—", note: "Push-up berapa? Negative PU berapa detik? Goblet squat beratnya berapa?" },
+      { name: "Set 1 target untuk siklus berikutnya", duration: "—", note: "Spesifik: '+1 rep push-up' atau 'lateral raise naik 0.5kg'. SATU target." },
+    ]
+  },
+];
+
+// ===== DAYS ARRAY (Push → Pull → Legs&Core → Rest, x2 dalam 7 hari) =====
 const days = [
   {
-    day: "SENIN",
-    label: "Push — Dada · Bahu · Triceps",
-    theme: "#FF6B35",
-    icon: "💪",
-    type: "workout",
-    focus: "Dada · Bahu (4 gerakan) · Triceps",
-    goal: "Chest & shoulder adalah inti V-shape. Bahu dapat porsi terbesar hari ini.",
-    warmup: "10 arm circles → 10 shoulder rolls → 5 pike push-up ringan (aktivasi bahu) → 5 scapular push-up",
-    restTime: "60–90 detik antar set",
-    exercises: [
-      {
-        name: "Push-Up",
-        sets: "4", reps: "6–12",
-        note: "Tangan selebar bahu, siku 45°. Turunkan dada sampai 2–3cm dari lantai. Jika belum kuat mulai dari Incline (tangan di meja). Minimal 2 set terakhir close to failure.",
-        why: "Compound dada + triceps sekaligus. Triceps sudah kena di sini — makanya direct tricep dikurangi",
-        category: "Main", db: false
-      },
-      {
-        name: "DB Floor Press (Flat)",
-        sets: "4", reps: "10–12",
-        note: "Berbaring flat di lantai, dumbbell di samping dada, siku 45°. Tekan ke atas penuh. Turunkan pelan 3 detik. Lantai = safety stopper alami.",
-        why: "Flat press = massa dada tengah & bawah. Fondasi chest yang tebal",
-        category: "DB Mass", db: true
-      },
-      {
-        name: "DB Incline Press",
-        sets: "3", reps: "10–12",
-        note: "Sandarkan punggung atas di tepi kursi/kasur rendah sudut 30–45°, atau ganjal punggung dengan bantal tebal di lantai. Dumbbell di bahu, tekan ke atas. Terasa lebih di dada atas.",
-        why: "Incline press = dada atas (upper chest) — bikin dada terlihat penuh & berisi dari semua sudut, bukan cuma tengah",
-        category: "DB Mass", db: true
-      },
-      {
-        name: "DB Shoulder Press",
-        sets: "4", reps: "10–12",
-        note: "Duduk tegak di kursi, dumbbell di bahu setinggi telinga. Tekan ke atas hingga lengan lurus, jangan kunci siku penuh. Turunkan kembali ke bahu dengan kontrol. Core aktif, punggung tidak melengkung.",
-        why: "Bahu #1 — vertical press compound untuk massa bahu keseluruhan. Lebih bisa di-progressive overload dari Pike PU",
-        category: "DB Mass", db: true
-      },
-      {
-        name: "DB Lateral Raise",
-        sets: "4", reps: "12–15",
-        note: "Angkat ke samping hingga sejajar bahu, jempol sedikit ke bawah. Variasikan tiap set: tegak → condong ke depan → leaning ke sisi. Beban SANGAT RINGAN. Turunkan pelan — ini yang bikin kena.",
-        why: "Bahu #2 — KUNCI V-SHAPE. Satu-satunya cara isolasi lateral delt murni",
-        category: "DB Mass", db: true
-      },
-      {
-        name: "🔁 SUPERSET: DB Front Raise ↔ Rear Delt Fly",
-        sets: "3", reps: "12–15 + 12–15",
-        note: "Front Raise (angkat ke depan setinggi bahu — anterior delt) → langsung Rear Delt Fly tanpa istirahat (bungkuk, angkat ke samping — posterior delt) → istirahat 75 detik. Antagonist isolation sempurna.",
-        why: "Bahu #3 & #4 — anterior vs posterior delt. Bahu 3D dari semua sudut",
-        category: "Shoulder", db: true
-      },
-      {
-        name: "Diamond Push-Up",
-        sets: "3", reps: "6–10",
-        note: "Tangan membentuk berlian di bawah dada. Siku menutup rapat ke badan saat turun. Lebih susah dari push-up biasa — mulai dari lutut jika perlu.",
-        why: "Triceps #1 — bodyweight, melatih semua kepala triceps terutama medial head",
-        category: "Bodyweight", db: false
-      },
-      {
-        name: "DB Overhead Tricep Extension",
-        sets: "3", reps: "12",
-        note: "Duduk tegak, pegang satu dumbbell dengan dua tangan di atas kepala. Turunkan ke belakang kepala (siku tetap dekat telinga, jangan kemana-mana), angkat kembali. Gerakannya hanya di siku.",
-        why: "Triceps #2 — long head triceps (bagian terbesar). Tidak bisa dikena maksimal dari push-up atau dip saja",
-        category: "DB Mass", db: true
-      },
-      {
-        name: "Chair Dip",
-        sets: "3", reps: "8–12",
-        note: "Tangan di tepi kursi, kaki lurus ke depan. Turunkan badan hingga siku 90°. Jaga bahu tetap rendah, jangan angkat ke telinga. Untuk lebih berat: kaki di atas kursi lain.",
-        why: "Triceps #3 — lateral head & overall triceps mass. Compound tricep terbaik untuk pemula",
-        category: "Bodyweight", db: false
-      },
-    ],
-    cooldown: "Chest doorway stretch 45 detik → shoulder cross-body stretch 30 detik/sisi → tricep overhead stretch 30 detik/sisi",
-    skillTarget: "📈 Progression: Incline PU → Full PU → Diamond PU → Archer PU | Pike PU → Handstand Wall Hold",
+    day: "SENIN", label: "Push (Mendorong)", theme: "#FF6B35", icon: "💪", type: "workout",
+    focus: "Dada · Bahu · Triceps", goal: "Chest & shoulder adalah inti V-shape.",
+    warmup: pushWarmup, restTime: "60–90 detik antar set", exercises: pushExercises,
+    cooldown: pushCooldown, skillTarget: pushSkill,
   },
   {
-    day: "SELASA",
-    label: "Istirahat / Kardio Ringan",
-    theme: "#A8E6CF",
-    icon: "🧘",
-    type: "rest",
-    focus: "Recovery Aktif · Fleksibilitas",
-    goal: "Biarkan otot push hari Senin recovery. Gerak ringan untuk sirkulasi darah.",
-    restSections: [
-      {
-        title: "🚶 KARDIO RINGAN (pilih salah satu)",
-        color: "#A8E6CF",
-        items: [
-          { name: "Jalan santai 20–30 menit", duration: "—", note: "Bukan lari, bukan jalan cepat. Santai untuk sirkulasi darah." },
-          { name: "Bersepeda santai", duration: "20 menit", note: "Intensitas rendah — detak jantung di bawah 120 BPM." },
-          { name: "Renang santai", duration: "20 menit", note: "Low impact, bagus untuk recovery otot bahu & dada." },
-        ]
-      },
-      {
-        title: "🤸 FLEXIBILITY RINGAN (20 menit)",
-        color: "#FFE66D",
-        items: [
-          { name: "Cat-Cow", duration: "10 reps pelan", note: "Mobilitas tulang belakang setelah push day." },
-          { name: "Chest doorway stretch", duration: "45 detik × 2", note: "Buka dada yang mungkin masih kencang dari kemarin." },
-          { name: "Shoulder cross-body stretch", duration: "30 detik/sisi × 2", note: "Bahu anterior yang mungkin DOMS dari kemarin." },
-          { name: "Couch Stretch", duration: "60 detik/sisi", note: "Hip flexor — persiapan untuk Jumat leg day." },
-          { name: "Seated Pike Stretch", duration: "3 × 45 detik", note: "Hamstring — persiapan untuk Jumat leg day." },
-          { name: "Child's Pose", duration: "60–90 detik", note: "Rileks total. Napas dalam." },
-        ]
-      },
-    ],
-    skillTarget: "",
+    day: "SELASA", label: "Pull (Menarik)", theme: "#4ECDC4", icon: "🏋️", type: "workout",
+    focus: "Lats · Punggung · Biceps · Forearm", goal: "Sayap lebar = V-shape. Punggung tebal = badan berisi.",
+    warmup: pullWarmup, restTime: "60–90 detik antar set", exercises: pullExercises,
+    cooldown: pullCooldown, skillTarget: pullSkill,
   },
   {
-    day: "RABU",
-    label: "Pull — Punggung · Biceps · Forearm",
-    theme: "#4ECDC4",
-    icon: "🏋️",
-    type: "workout",
-    focus: "Lats · Punggung · Biceps · Forearm",
-    goal: "Sayap lebar = V-shape. Punggung tebal = badan berisi. Forearm kuat = grip pull-up.",
-    warmup: "Dead hang 20 detik → scapular pull-up 8 reps → arm swings → shoulder dislocates pakai handuk",
-    restTime: "60–90 detik antar set",
-    exercises: [
-      {
-        name: "Dead Hang",
-        sets: "3", reps: "20–30 detik",
-        note: "Gantung di pull-up bar, genggam kuat, biarkan bahu naik alami. Fokus napas dan grip. Ini latihan nyata, bukan sekadar pemanasan.",
-        why: "Grip strength + dekompresi tulang belakang. Grip lemah = pull-up gagal di tengah",
-        category: "Foundation", db: false
-      },
-      {
-        name: "Australian Row — 3 Variasi Grip",
-        sets: "4", reps: "8–12",
-        note: "Tubuh lurus, tarik dada ke meja. Rotasi grip tiap set: pronated (telapak bawah) → supinated (telapak atas) → neutral → pilih yang paling kena. Makin rebah = makin susah.",
-        why: "Variasi grip = semua bagian lat terlatih. Kunci sayap lebar untuk V-shape",
-        category: "Main", db: false
-      },
-      {
-        name: "Straight Arm Pull (handuk/tali)",
-        sets: "3", reps: "12–15",
-        note: "Ikat handuk di atas pintu. Pegang kedua ujung, tangan LURUS sepanjang gerakan. Tarik ke bawah hingga sejajar pinggul. Rasakan lat stretch di atas dan kontraksi di bawah.",
-        why: "Isolasi lat murni tanpa bicep bantu — memastikan sayap benar-benar berkembang",
-        category: "Main", db: false
-      },
-      {
-        name: "DB Bent-Over Row",
-        sets: "3", reps: "10–12",
-        note: "Bungkuk 45°, punggung LURUS. Tarik dumbbell ke pinggang, tahan 1 detik, turunkan pelan. Jangan ayun badan — kekuatan dari punggung, bukan momentum.",
-        why: "Ketebalan punggung (mid-back, rhomboids) — punggung lebar DAN tebal",
-        category: "DB Mass", db: true
-      },
-      {
-        name: "Negative Pull-Up",
-        sets: "3", reps: "3–5 (turun 5–8 detik)",
-        note: "Naik ke posisi chin over bar pakai kursi atau lompat. Lalu turunkan badan seperlahan mungkin. Target 5–8 detik per rep. Catat waktu tiap minggu.",
-        why: "Cara tercepat bangun kekuatan pull-up dari nol",
-        category: "Progression", db: false
-      },
-      {
-        name: "DB Bicep Curl",
-        sets: "3", reps: "10–12",
-        note: "Siku menempel di sisi badan. Angkat bergantian atau bersamaan. Turunkan PELAN 3 detik. Minimal 2 set terakhir close to failure.",
-        why: "Bicep berisi = lengan berotot dari semua sudut",
-        category: "DB Mass", db: true
-      },
-      {
-        name: "Reverse Curl (Brachioradialis)",
-        sets: "3", reps: "10–12",
-        note: "Telapak menghadap ke BAWAH. Angkat dumbbell ke atas, turunkan pelan. Pakai beban lebih ringan dari bicep curl. Brachioradialis adalah primary mover di sini, bukan bicep.",
-        why: "Brachioradialis = otot paling dominan di lengan bawah. Reverse curl lebih efektif dari hammer curl untuk otot ini",
-        category: "Forearm", db: true
-      },
-      {
-        name: "DB Hammer Curl",
-        sets: "3", reps: "10–12",
-        note: "Telapak saling berhadapan. Siku tetap di sisi badan. Turunkan pelan 3 detik.",
-        why: "Brachialis & brachioradialis dari sudut berbeda — lengan bawah tebal dari semua sisi",
-        category: "Forearm", db: true
-      },
-      {
-        name: "Wrist Curl",
-        sets: "3", reps: "15–20",
-        note: "Duduk, lengan bawah di atas paha, telapak ke atas. Turunkan pergelangan ke bawah, kerutkan ke atas setinggi mungkin. Pakai beban sangat ringan. Close to failure di set terakhir.",
-        why: "Forearm flexors — komponen depan lengan bawah yang tebal",
-        category: "Forearm", db: true
-      },
-      {
-        name: "Superman Hold",
-        sets: "3", reps: "10–12 (tahan 2 detik)",
-        note: "Tengkurap, tangan lurus ke depan. Angkat dada, tangan, dan kaki bersamaan. Tahan 2 detik, turunkan pelan. Rasakan kontraksi di punggung bawah.",
-        why: "Lower back (erector spinae) — cegah cedera deadlift & squat, bangun postur tegak",
-        category: "Lower Back", db: false
-      },
-    ],
-    cooldown: "Lat stretch gantung rileks 20 detik → bicep wall stretch 30 detik/sisi → child's pose → knee-to-chest 30 detik/sisi",
-    skillTarget: "📈 Progression: Australian Row → Negative Pull-Up → Full Pull-Up → Chest-to-Bar → Muscle-Up",
+    day: "RABU", label: "Legs (Kaki) & Inti (Core)", theme: "#FFE66D", icon: "🦵", type: "workout",
+    focus: "Paha · Glutes · Betis · Core · Oblique", goal: "Kaki proporsional + core 360° = fondasi semua gerakan.",
+    warmup: legsWarmup, restTime: "60–90 detik antar set", exercises: legsExercises,
+    cooldown: legsCooldown, skillTarget: legsSkill,
   },
   {
-    day: "KAMIS",
-    label: "Istirahat",
-    theme: "#888",
-    icon: "😴",
-    type: "rest",
-    focus: "Recovery Penuh",
-    goal: "Otot punggung & lengan sedang recovery. Jangan ganggu prosesnya.",
-    restSections: [
-      {
-        title: "✅ BOLEH DILAKUKAN",
-        color: "#A8E6CF",
-        items: [
-          { name: "Jalan santai 15–20 menit", duration: "—", note: "Untuk sirkulasi darah ringan saja. Bukan olahraga." },
-          { name: "Foam rolling / self-massage", duration: "10 menit", note: "Punggung atas, bicep, forearm. Tekan titik yang pegel, tahan 30 detik." },
-          { name: "Stretching ringan", duration: "10 menit", note: "Hanya yang nyaman, tidak sampai batas. Ini recovery bukan sesi flexibility." },
-          { name: "Tidur 7–9 jam malam ini", duration: "—", note: "Growth hormone 70% diproduksi saat tidur dalam. Prioritas utama." },
-          { name: "Makan cukup protein", duration: "—", note: "Hari istirahat bukan berarti makan sedikit. Otot masih butuh bahan untuk rebuild." },
-        ]
-      },
-      {
-        title: "❌ HINDARI",
-        color: "#FF8FA3",
-        items: [
-          { name: "Latihan pull atau bicep apapun", duration: "—", note: "Otot punggung & lengan baru dilatih keras kemarin. Butuh 48–72 jam recovery." },
-          { name: "Kardio intensif / HIIT", duration: "—", note: "Akan memperlambat recovery otot." },
-          { name: "Skip makan", duration: "—", note: "Recovery = kalori + protein cukup. Makan kurang = otot tidak tumbuh optimal." },
-        ]
-      }
-    ],
-    skillTarget: "",
+    day: "KAMIS", label: "Istirahat", theme: "#888", icon: "😴", type: "rest",
+    focus: "Recovery Penuh", goal: "Otot baru dilatih 3 hari berturut-turut. Recovery di sini menentukan kualitas siklus berikutnya.",
+    restSections: restSectionsContent, skillTarget: "",
   },
   {
-    day: "JUMAT",
-    label: "Legs, Core & Oblique",
-    theme: "#FFE66D",
-    icon: "🦵",
-    type: "workout",
-    focus: "Paha · Glutes · Betis · Core · Perut Samping",
-    goal: "Kaki proporsional + core 360° = fondasi semua gerakan calisthenics",
-    warmup: "10 hip circles tiap arah → 10 leg swings per kaki → 10 glute bridge → 30 detik deep squat hold",
-    restTime: "60–90 detik antar set",
-    exercises: [
-      {
-        name: "DB Goblet Squat",
-        sets: "4", reps: "10–12",
-        note: "Pegang 1 dumbbell di depan dada dengan dua tangan. Squat dalam, siku masuk di antara lutut. Dorong lantai saat naik. Punggung tetap tegak.",
-        why: "Quad + glutes compound — squat paling aman & efektif untuk pemula",
-        category: "DB Mass", db: true
-      },
-      {
-        name: "DB Romanian Deadlift",
-        sets: "3", reps: "10–12",
-        note: "Dorong pinggul ke belakang, turunkan dumbbell mengikuti kaki hingga terasa tarikan di hamstring. Punggung LURUS. Dorong pinggul maju saat naik.",
-        why: "Hamstring & glutes — dua otot terbesar di tubuh",
-        category: "DB Mass", db: true
-      },
-      {
-        name: "Reverse Lunge",
-        sets: "3", reps: "8–10 per kaki",
-        note: "Langkah ke BELAKANG. Turunkan lutut belakang hampir ke lantai. Dorong kembali dari kaki depan. Bisa pegang tembok untuk keseimbangan.",
-        why: "Quad + glutes + hip flexor — lunge mundur lebih aman untuk lutut pemula",
-        category: "Bodyweight", db: false
-      },
-      {
-        name: "Glute Bridge",
-        sets: "3", reps: "15 (tahan 2 detik di atas)",
-        note: "Berbaring, lutut ditekuk. Tekan tumit ke lantai, angkat pinggul hingga tubuh lurus dari bahu ke lutut. Peras glutes keras di atas.",
-        why: "Aktifkan gluteus maximus — glutes yang kuat = postur lebih baik & kaki lebih berisi",
-        category: "Bodyweight", db: false
-      },
-      {
-        name: "Side-Lying Hip Abduction",
-        sets: "3", reps: "15 per sisi",
-        note: "Berbaring miring, kaki lurus. Angkat kaki atas setinggi pinggul, tahan 1 detik, turunkan pelan. Jaga badan tidak berputar.",
-        why: "Gluteus medius — cegah lutut ambles ke dalam saat squat",
-        category: "Lower Body", db: false
-      },
-      {
-        name: "🔁 SUPERSET: Calf Raise + Toe Raise",
-        sets: "3", reps: "15/kaki + 15–20",
-        note: "Calf raise (tumit naik setinggi mungkin) → langsung Toe raise (jari kaki naik, tumit di lantai) → istirahat 60 detik. Antagonist plantarflexion vs dorsiflexion.",
-        why: "Betis depan & belakang sekaligus — antagonist sejati, satu istirahat saat yang lain kerja",
-        category: "Lower Body", db: false
-      },
-      {
-        name: "Dead Bug",
-        sets: "3", reps: "8–10 per sisi",
-        note: "Berbaring, angkat tangan & lutut 90°. Turunkan tangan kanan & kaki kiri bersamaan, punggung bawah tetap di lantai. Kembali, ganti sisi. PERLAHAN.",
-        why: "Deep core stability — fondasi wajib semua gerakan calisthenics lanjutan",
-        category: "Core", db: false
-      },
-      {
-        name: "V-Up (atau Tuck V-Up)",
-        sets: "3", reps: "8–12",
-        note: "Angkat kaki & badan bersamaan, raih kaki di titik puncak. Jika berat: Tuck V-Up (lutut ditekuk). Turunkan perlahan.",
-        why: "Kontraksi full rectus abdominis dari atas & bawah sekaligus",
-        category: "Core", db: false
-      },
-      {
-        name: "Side Plank Dip",
-        sets: "3", reps: "12–15 per sisi",
-        note: "Dari posisi side plank (siku di lantai), turunkan pinggul hampir ke lantai lalu angkat kembali setinggi mungkin. Gerakkan hanya pinggul — badan tetap lurus. Kerjakan kiri dulu selesai, baru kanan.",
-        why: "Oblique dinamis — jauh lebih efektif dari static side plank karena ada kontraksi & ekstensi penuh tiap rep",
-        category: "Oblique", db: false
-      },
-      {
-        name: "Bicycle Crunch",
-        sets: "3", reps: "10–12 per sisi (pelan)",
-        note: "Tangan di belakang kepala, angkat bahu, bawa siku kanan ke lutut kiri sambil luruskan kaki kanan. Ganti sisi. PELAN — 2 detik per gerakan.",
-        why: "Oblique dinamis + abs tengah — definisi perut samping",
-        category: "Oblique", db: false
-      },
-    ],
-    cooldown: "Hip flexor lunge stretch 40 detik/sisi → hamstring stretch 40 detik/kaki → side stretch berdiri 30 detik/sisi → calf stretch 30 detik/kaki",
-    skillTarget: "📈 Progression: Goblet Squat → Bulgarian Split Squat → Shrimp Squat → Pistol Squat",
+    day: "JUMAT", label: "Push (Mendorong)", theme: "#FF6B35", icon: "💪", type: "workout",
+    focus: "Dada · Bahu · Triceps", goal: "Siklus kedua dimulai. Sama seperti Senin — fokus form & progressive overload.",
+    warmup: pushWarmup, restTime: "60–90 detik antar set", exercises: pushExercises,
+    cooldown: pushCooldown, skillTarget: pushSkill,
   },
   {
-    day: "SABTU",
-    label: "Istirahat Total",
-    theme: "#FF8FA3",
-    icon: "🌿",
-    type: "rest",
-    focus: "Recovery Penuh · Recharge",
-    goal: "Istirahat total = otot tumbuh maksimal. Jangan underestimate hari ini.",
-    restSections: [
-      {
-        title: "😴 PRIORITAS HARI INI",
-        color: "#FF8FA3",
-        items: [
-          { name: "Tidur 7–9 jam semalam?", duration: "—", note: "Kalau kurang, tidur siang 20–30 menit (power nap). Growth hormone paling tinggi saat tidur dalam." },
-          { name: "Makan cukup & berkualitas", duration: "—", note: "Protein + karbo + lemak sehat. Hari sabtu = recovery nutrition untuk tiga hari latihan minggu ini." },
-          { name: "Hidrasi 2–3L air", duration: "—", note: "Otot 75% adalah air. Kurang minum = recovery lambat, otot terasa flat." },
-          { name: "Tidak ada latihan keras", duration: "—", note: "Berjalan-jalan santai boleh. Tapi tidak ada resistance training atau kardio intensif." },
-        ]
-      },
-      {
-        title: "🍱 MEAL PREP (opsional tapi sangat berguna)",
-        color: "#FFE66D",
-        items: [
-          { name: "Siapkan protein untuk seminggu", duration: "—", note: "Rebus telur 10 butir, masak ayam batch, beli tempe/tahu untuk seminggu. Jadi tidak ada alasan skip protein." },
-          { name: "Buat bulking shake batch", duration: "—", note: "Pisang 6 + susu 1 liter + oat + madu → blender per porsi, simpan di kulkas maksimal 2 hari." },
-          { name: "Rencanakan makan minggu depan", duration: "—", note: "Tahu mau makan apa = tidak skip makan = kalori & protein terpenuhi." },
-        ]
-      },
-    ],
-    skillTarget: "",
+    day: "SABTU", label: "Pull (Menarik)", theme: "#4ECDC4", icon: "🏋️", type: "workout",
+    focus: "Lats · Punggung · Biceps · Forearm", goal: "Sayap & punggung lagi. Bandingkan kekuatan dengan sesi Selasa.",
+    warmup: pullWarmup, restTime: "60–90 detik antar set", exercises: pullExercises,
+    cooldown: pullCooldown, skillTarget: pullSkill,
   },
   {
-    day: "MINGGU",
-    label: "Istirahat Total + Check-in",
-    theme: "#C77DFF",
-    icon: "📓",
-    type: "rest",
-    focus: "Recovery Penuh · Evaluasi Mingguan",
-    goal: "Istirahat total + evaluasi progress. Siapkan mental dan rencana untuk minggu baru.",
-    restSections: [
-      {
-        title: "🔁 MOBILITY RINGAN (opsional, 15 menit)",
-        color: "#4ECDC4",
-        items: [
-          { name: "Shoulder CARs", duration: "5 reps/sisi", note: "Putar bahu full circle perlahan. Injury prevention untuk push day Senin." },
-          { name: "Hip 90/90", duration: "60 detik/sisi", note: "Buka hip paling dalam. Penting untuk squat depth Jumat depan." },
-          { name: "Standing Forward Fold", duration: "2 × 60 detik", note: "Kaki lurus, raih lantai. Biarkan gravitasi bekerja." },
-          { name: "Wrist CARs", duration: "5 reps/arah", note: "Pergelangan tangan full range. Injury prevention push & forearm." },
-          { name: "Child's Pose", duration: "60–90 detik", note: "Rileks total. Napas dalam." },
-        ]
-      },
-      {
-        title: "📓 WEEKLY CHECK-IN (5 menit — WAJIB)",
-        color: "#C77DFF",
-        items: [
-          { name: "Timbang berat badan", duration: "—", note: "Pagi sebelum makan. Naik 0.3–0.7kg/minggu = on track. Tidak naik = kurang kalori." },
-          { name: "Catat rekor latihan", duration: "—", note: "Push-up? Negative PU detik? Goblet squat berat? Kekuatan naik = otot tumbuh." },
-          { name: "Foto progress (tiap 2 minggu)", duration: "—", note: "Depan, samping, belakang. Perubahan terlihat jelas bulanan." },
-          { name: "Set 1 target minggu depan", duration: "—", note: "Spesifik: '+1 rep push-up' atau 'lateral raise naik 0.5kg'. SATU target." },
-          { name: "Evaluasi nutrisi minggu ini", duration: "—", note: "Protein 80–100g tercapai? Makan 4–5x sehari? Kalau tidak, fix minggu depan." },
-        ]
-      },
-    ],
-    skillTarget: "💡 Ingat: 3 hari PPL konsisten > 6 hari yang sering dilewat",
+    day: "MINGGU", label: "Legs (Kaki) & Inti (Core)", theme: "#FFE66D", icon: "🦵", type: "workout",
+    focus: "Paha · Glutes · Betis · Core · Oblique", goal: "Tutup siklus minggu ini. Besok lanjut siklus baru dimulai dari Rest atau Push (cek catatan di Tips).",
+    warmup: legsWarmup, restTime: "60–90 detik antar set", exercises: legsExercises,
+    cooldown: legsCooldown, skillTarget: legsSkill,
   },
 ];
 
 const bulkingTips = [
   { icon: "📈", title: "Caloric Surplus", value: "+300–500 kkal/hari", desc: "Hitung kebutuhan harianmu (~2000–2200 kkal) lalu tambah 300–500. Ini satu-satunya cara naik berat badan.", color: "#FF8FA3" },
   { icon: "🥚", title: "Protein Quality", value: "80–100g/hari", desc: "Kualitas > kuantitas. Ranking: Telur/Susu/Whey 🥇 → Ayam/Ikan 🥈 → Tempe/Tahu 🥉. Kombinasikan keduanya.", color: "#4ECDC4" },
-  { icon: "🍚", title: "Karbohidrat", value: "Prioritas tinggi", desc: "Nasi, ubi, oat. Karbo = bahan bakar otot. Jangan dipotong — kamu butuh lebih banyak.", color: "#FFE66D" },
+  { icon: "🍚", title: "Karbohidrat", value: "Prioritas tinggi", desc: "Nasi, ubi, oat. Karbo = bahan bakar otot. Jangan dipotong — kamu butuh lebih banyak, apalagi latihan 6x/minggu.", color: "#FFE66D" },
   { icon: "🥑", title: "Lemak Sehat", value: "Jangan skip", desc: "Alpukat, kacang, kuning telur. Lemak = produksi testosteron & hormon pertumbuhan.", color: "#C77DFF" },
   { icon: "🥛", title: "Liquid Calories", value: "Trik orang kurus", desc: "Bulking shake: pisang + susu + telur + oat = ~700 kkal/gelas. Lebih mudah dari makan besar.", color: "#FF6B35" },
   { icon: "⏰", title: "Frekuensi Makan", value: "4–5x sehari", desc: "Sarapan → snack → siang → snack sore → malam. Jangan biarkan perut kosong > 4 jam.", color: "#A8E6CF" },
@@ -459,9 +380,9 @@ export default function App() {
     <div style={{ minHeight:"100vh", background:"#0d0d10", fontFamily:"'Segoe UI',system-ui,sans-serif", color:"#f0f0f0", paddingBottom:80, maxWidth:480, margin:"0 auto" }}>
       <div style={{ background:"linear-gradient(135deg,#1a1a2e 0%,#16213e 60%,#0f3460 100%)", padding:"28px 20px 20px", textAlign:"center", borderBottom:"1px solid rgba(255,255,255,0.08)", position:"relative", overflow:"hidden" }}>
         <div style={{ position:"absolute", inset:0, opacity:0.03, backgroundImage:"repeating-linear-gradient(0deg,#fff 0,#fff 1px,transparent 1px,transparent 40px),repeating-linear-gradient(90deg,#fff 0,#fff 1px,transparent 1px,transparent 40px)" }} />
-        <div style={{ fontSize:11, letterSpacing:4, color:"#555", textTransform:"uppercase", marginBottom:6 }}>PPL Program — 3 Hari/Minggu</div>
+        <div style={{ fontSize:11, letterSpacing:4, color:"#555", textTransform:"uppercase", marginBottom:6 }}>Push · Pull · Legs — Siklus Berulang</div>
         <h1 style={{ margin:0, fontSize:26, fontWeight:900, letterSpacing:-1 }}>🏆 Push · Pull · Legs</h1>
-        <p style={{ margin:"6px 0 0", color:"#777", fontSize:12 }}>Sen · Rab · Jum · Istirahat Optimal · V-Shape Focus</p>
+        <p style={{ margin:"6px 0 0", color:"#777", fontSize:12 }}>6 Hari Latihan · 1 Rest · V-Shape Focus</p>
       </div>
 
       <div style={{ display:"flex", borderBottom:"1px solid rgba(255,255,255,0.08)", padding:"0 8px", position:"sticky", top:0, background:"#0d0d10", zIndex:10 }}>
@@ -628,7 +549,7 @@ export default function App() {
             </div>
           ))}
           <div style={{ background:"rgba(255,215,0,0.08)", border:"1px solid rgba(255,215,0,0.2)", borderRadius:12, padding:16 }}>
-            <div style={{ fontSize:12, fontWeight:800, color:"#FFE66D", marginBottom:8 }}>⏱️ Timeline PPL 3 Hari/Minggu</div>
+            <div style={{ fontSize:12, fontWeight:800, color:"#FFE66D", marginBottom:8 }}>⏱️ Timeline Push/Pull/Legs (6 hari/minggu)</div>
             <div style={{ fontSize:11, color:"#aaa", lineHeight:2 }}>
               • <span style={{ color:"#ddd" }}>Bulan 1:</span> Push-up 10+, Australian row stabil, bahu mulai sedikit lebih lebar<br/>
               • <span style={{ color:"#ddd" }}>Bulan 2–3:</span> Negative pull-up kuat, V-shape mulai terlihat, +1–3kg BB<br/>
@@ -643,7 +564,7 @@ export default function App() {
         <div style={{ padding:"20px 16px" }}>
           <div style={{ fontSize:11, color:"#555", marginBottom:6, letterSpacing:1.5, textTransform:"uppercase", fontWeight:700 }}>Panduan Naik Berat Badan</div>
           <div style={{ background:"rgba(255,143,163,0.08)", border:"1px solid rgba(255,143,163,0.25)", borderRadius:12, padding:14, marginBottom:20, fontSize:12, color:"#ddd", lineHeight:1.7 }}>
-            ⚡ <span style={{ color:"#FF8FA3", fontWeight:800 }}>Kamu kurus bukan karena malas makan</span> — metabolisme cepat + total kalori kurang. Fix ini dulu.
+            ⚡ <span style={{ color:"#FF8FA3", fontWeight:800 }}>Kamu kurus bukan karena malas makan</span> — metabolisme cepat + total kalori kurang. Apalagi sekarang latihan 6x/minggu, kebutuhan kalori naik. Fix ini dulu.
           </div>
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10, marginBottom:20 }}>
             {bulkingTips.map((tip,i) => (
@@ -695,6 +616,14 @@ export default function App() {
 
       {activeTab === "tips" && (
         <div style={{ padding:"20px 16px" }}>
+          <div style={{ fontSize:11, color:"#555", marginBottom:12, letterSpacing:1.5, textTransform:"uppercase", fontWeight:700 }}>🔄 Cara Baca Siklus Ini</div>
+          <div style={{ background:"rgba(199,125,255,0.08)", border:"1px solid rgba(199,125,255,0.25)", borderRadius:14, padding:16, marginBottom:20 }}>
+            <div style={{ fontSize:11, color:"#aaa", lineHeight:1.8 }}>
+              Siklusnya: <span style={{ color:"#fff", fontWeight:700 }}>Push → Pull → Legs → Rest</span>, lalu berulang lagi: <span style={{ color:"#fff", fontWeight:700 }}>Push → Pull → Legs</span>. Tiap otot dapat 2 sesi penuh dalam 7 hari dengan gap recovery 3–4 hari di antaranya — masih dalam batas aman.<br/><br/>
+              <span style={{ color:"#C77DFF", fontWeight:700 }}>Penting:</span> kalau minggu depan kamu mulai lagi dari Senin = Push, berarti dari Minggu (Legs) ke Senin (Push) hanya 1 hari jeda. Itu masih oke karena legs & push beda otot total. Tapi kalau badan terasa terlalu lelah, boleh insert 1 hari rest ekstra sebelum mulai ulang.
+            </div>
+          </div>
+
           <div style={{ fontSize:11, color:"#555", marginBottom:12, letterSpacing:1.5, textTransform:"uppercase", fontWeight:700 }}>💥 Hard Set & Close To Failure</div>
           <div style={{ background:"rgba(255,107,53,0.08)", border:"1px solid rgba(255,107,53,0.25)", borderRadius:14, padding:16, marginBottom:20 }}>
             <div style={{ fontSize:13, fontWeight:800, color:"#FF6B35", marginBottom:10 }}>Minimal 2 Hard Set per Exercise</div>
@@ -712,7 +641,7 @@ export default function App() {
               </div>
             ))}
             <div style={{ marginTop:10, fontSize:11, color:"#777", lineHeight:1.7 }}>
-              💡 Tanda latihan efektif: besok pagi otot yang dilatih terasa DOMS (nyeri). Tidak nyeri sama sekali = belum cukup keras.
+              💡 Tanda latihan efektif: besok pagi otot yang dilatih terasa DOMS (nyeri). Tidak nyeri sama sekali = belum cukup keras. Tapi karena siklus ini padat (6 hari/minggu), jangan paksakan to-failure di SEMUA set — pilih 2 exercise utama saja per hari untuk benar-benar to failure.
             </div>
           </div>
 
@@ -721,15 +650,15 @@ export default function App() {
             <div style={{ fontSize:12, fontWeight:800, color:"#4ECDC4", marginBottom:8 }}>Kekuatan Naik = Otot Tumbuh</div>
             <div style={{ fontSize:11, color:"#777", lineHeight:1.8 }}>
               Catat tiap sesi: exercise, sets, reps, beban.<br/>
-              Minggu ini 5kg × 10 reps → minggu depan target 5kg × 11 reps atau 6kg × 8 reps.<br/>
-              <span style={{ color:"#4ECDC4", fontWeight:700 }}>Kekuatan naik + form tetap = otot tumbuh. Sesederhana itu.</span>
+              Karena Push & Pull muncul 2x per minggu, bandingkan sesi pertama vs kedua — harusnya kekuatan sesi kedua minimal sama, idealnya sedikit lebih baik.<br/>
+              <span style={{ color:"#4ECDC4", fontWeight:700 }}>Kekuatan naik + form tetap = otot tumbuh.</span>
             </div>
           </div>
 
           <div style={{ fontSize:11, color:"#555", marginBottom:12, letterSpacing:1.5, textTransform:"uppercase", fontWeight:700 }}>⏰ Pagi vs Sore</div>
           <div style={{ marginBottom:20 }}>
             {[
-              { waktu:"🌅 Pagi", color:"#FFE66D", verdict:"Konsistensi lebih tinggi, mood bagus seharian. Cocok yang mudah prokrastinasi." },
+              { waktu:"🌅 Pagi", color:"#FFE66D", verdict:"Konsistensi lebih tinggi, mood bagus seharian. Penting banget untuk siklus 6 hari/minggu — jangan sampai terlewat." },
               { waktu:"🌇 Sore", color:"#FF8FA3", verdict:"Kekuatan & power di puncaknya. Cocok untuk sesi berat & PRs baru." },
             ].map((item,i) => (
               <div key={i} style={{ background:"rgba(255,255,255,0.03)", border:`1px solid ${item.color}22`, borderRadius:12, padding:14, marginBottom:10 }}>
@@ -737,9 +666,6 @@ export default function App() {
                 <div style={{ fontSize:11, color:item.color, background:`${item.color}12`, padding:"6px 10px", borderRadius:8 }}>{item.verdict}</div>
               </div>
             ))}
-            <div style={{ fontSize:11, color:"#666", background:"rgba(255,255,255,0.03)", padding:"10px 14px", borderRadius:10, lineHeight:1.7 }}>
-              💡 Waktu terbaik = yang bisa kamu lakukan KONSISTEN setiap minggu.
-            </div>
           </div>
 
           <div style={{ fontSize:11, color:"#555", marginBottom:12, letterSpacing:1.5, textTransform:"uppercase", fontWeight:700 }}>🍽️ Pre & Post Workout</div>
@@ -753,7 +679,7 @@ export default function App() {
               { label:"POST-WORKOUT", color:"#4ECDC4", icon:"🔧", items:[
                 { title:"Makan dalam 1–2 jam setelah latihan", desc:"Bukan 30 menit. Tapi jangan sampai 4 jam kemudian." },
                 { title:"Protein 30–40g + Karbohidrat", desc:"Protein untuk repair. Karbo untuk isi ulang glikogen." },
-                { title:"Post-workout = waktu terbaik nutrisi diserap", desc:"Untuk bulking: makan lebih besar di waktu ini." },
+                { title:"Krusial untuk siklus 6 hari/minggu", desc:"Recovery cepat antara sesi sangat tergantung nutrisi post-workout yang konsisten." },
               ]},
             ].map((section,si) => (
               <div key={si} style={{ background:`${section.color}10`, border:`1px solid ${section.color}30`, borderRadius:14, padding:16, marginBottom:10 }}>
@@ -774,9 +700,9 @@ export default function App() {
           <div style={{ background:"linear-gradient(135deg,rgba(255,107,53,0.1),rgba(199,125,255,0.1))", border:"1px solid rgba(255,107,53,0.2)", borderRadius:14, padding:16 }}>
             <div style={{ fontSize:13, fontWeight:800, color:"#fff", marginBottom:10 }}>🔥 Yang Paling Penting</div>
             {[
-              "3 hari PPL konsisten > 6 hari yang sering dilewat.",
+              "Ikuti siklus Push-Pull-Legs-Rest tanpa putus — itu lebih penting dari sempurna di atas kertas.",
               "Hasil terlihat di bulan ke-3, terasa di bulan ke-2, dimulai di hari pertama.",
-              "Progressive overload tanpa konsistensi = tidak ada hasil.",
+              "Kalau terasa terlalu capek, istirahat ekstra itu sah. Dengarkan tubuhmu.",
               "Bandingkan dirimu dengan dirimu 3 bulan lalu — bukan orang lain.",
             ].map((q,i) => (
               <div key={i} style={{ display:"flex", gap:10, marginBottom:i<3?10:0 }}>
