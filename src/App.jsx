@@ -1,72 +1,59 @@
 import { useState } from "react";
 
 // ===== PUSH DAY CONTENT =====
-const pushWarmup = "10 arm circles → 10 shoulder rolls → 5 pike push-up ringan (aktivasi bahu) → 5 scapular push-up";
+const pushWarmup = "10 arm circles → 10 shoulder rolls → 10 wrist circles → 5 scapular push-up ringan";
 const pushExercises = [
   {
-    name: "Push-Up",
-    sets: "4", reps: "6–12",
-    note: "Tangan selebar bahu, siku 45°. Turunkan dada sampai 2–3cm dari lantai. Jika belum kuat mulai dari Incline (tangan di meja). Minimal 2 set terakhir close to failure.",
-    why: "Compound dada + triceps sekaligus. Triceps sudah kena di sini",
+    name: "Incline Push-Up",
+    sets: "3", reps: "10–15",
+    note: "Tangan di meja/kursi, badan lurus. Turunkan dada ke permukaan, dorong kembali. Makin rendah permukaan = makin susah.",
+    why: "Aktivasi upper chest + pemanasan sendi bahu sebelum gerakan yang lebih berat",
     category: "Main", db: false
   },
   {
-    name: "DB Floor Press (Flat)",
-    sets: "4", reps: "10–12",
-    note: "Berbaring flat di lantai, dumbbell di samping dada, siku 45°. Tekan ke atas penuh. Turunkan pelan 3 detik. Lantai = safety stopper alami.",
-    why: "Flat press = massa dada tengah & bawah. Fondasi chest yang tebal",
-    category: "DB Mass", db: true
+    name: "Regular Push-Up",
+    sets: "4", reps: "8–15",
+    note: "Tangan selebar bahu, siku 45°. Turunkan dada sampai 2–3cm dari lantai. Minimal 2 set terakhir close to failure.",
+    why: "Compound utama dada — chest, bahu depan, triceps sekaligus. Ukur progress tiap minggu",
+    category: "Main", db: false
   },
   {
     name: "DB Incline Press",
     sets: "3", reps: "10–12",
-    note: "Sandarkan punggung atas di tepi kursi/kasur rendah sudut 30–45°, atau ganjal punggung dengan bantal tebal di lantai. Dumbbell di bahu, tekan ke atas. Terasa lebih di dada atas.",
-    why: "Incline press = dada atas (upper chest) — bikin dada terlihat penuh & berisi dari semua sudut",
-    category: "DB Mass", db: true
-  },
-  {
-    name: "DB Shoulder Press",
-    sets: "4", reps: "10–12",
-    note: "Duduk tegak di kursi, dumbbell di bahu setinggi telinga. Tekan ke atas hingga lengan lurus, jangan kunci siku penuh. Turunkan kembali ke bahu dengan kontrol. Core aktif, punggung tidak melengkung.",
-    why: "Bahu #1 — vertical press compound untuk massa bahu keseluruhan",
-    category: "DB Mass", db: true
-  },
-  {
-    name: "DB Lateral Raise",
-    sets: "4", reps: "12–15",
-    note: "Angkat ke samping hingga sejajar bahu, jempol sedikit ke bawah. Variasikan tiap set: tegak → condong ke depan → leaning ke sisi. Beban SANGAT RINGAN. Turunkan pelan — ini yang bikin kena.",
-    why: "Bahu #2 — KUNCI V-SHAPE. Satu-satunya cara isolasi lateral delt murni",
-    category: "DB Mass", db: true
-  },
-  {
-    name: "🔁 SUPERSET: DB Front Raise ↔ Rear Delt Fly",
-    sets: "3", reps: "12–15 + 12–15",
-    note: "Front Raise (angkat ke depan setinggi bahu — anterior delt) → langsung Rear Delt Fly tanpa istirahat (bungkuk, angkat ke samping — posterior delt) → istirahat 75 detik. Antagonist isolation sempurna.",
-    why: "Bahu #3 & #4 — anterior vs posterior delt. Bahu 3D dari semua sudut",
-    category: "Shoulder", db: true
-  },
-  {
-    name: "Diamond Push-Up",
-    sets: "3", reps: "6–10",
-    note: "Tangan membentuk berlian di bawah dada. Siku menutup rapat ke badan saat turun. Lebih susah dari push-up biasa — mulai dari lutut jika perlu.",
-    why: "Triceps #1 — bodyweight, melatih semua kepala triceps terutama medial head",
-    category: "Bodyweight", db: false
-  },
-  {
-    name: "DB Overhead Tricep Extension",
-    sets: "3", reps: "12",
-    note: "Duduk tegak, pegang satu dumbbell dengan dua tangan di atas kepala. Turunkan ke belakang kepala (siku tetap dekat telinga), angkat kembali. Gerakannya hanya di siku.",
-    why: "Triceps #2 — long head triceps (bagian terbesar). Tidak bisa dikena maksimal dari push-up atau dip saja",
+    note: "Sandarkan punggung atas di tepi kursi/kasur sudut 30–45°. Dumbbell di bahu, tekan ke atas. Turunkan pelan 3 detik. Terasa lebih di dada atas.",
+    why: "Upper chest dengan beban — DB press bisa di-progressive overload lebih leluasa dari bodyweight",
     category: "DB Mass", db: true
   },
   {
     name: "Chair Dip",
     sets: "3", reps: "8–12",
-    note: "Tangan di tepi kursi, kaki lurus ke depan. Turunkan badan hingga siku 90°. Jaga bahu tetap rendah. Untuk lebih berat: kaki di atas kursi lain.",
-    why: "Triceps #3 — lateral head & overall triceps mass. Compound tricep terbaik untuk pemula",
+    note: "Tangan di tepi kursi, kaki lurus ke depan. Turunkan badan hingga siku 90°. Condong sedikit ke depan untuk lebih kena dada bawah. Jaga bahu tetap rendah.",
+    why: "Lower chest + triceps compound. Bridges chest dan triceps day dengan satu gerakan",
     category: "Bodyweight", db: false
   },
+  {
+    name: "DB Shoulder Press",
+    sets: "3", reps: "10–12",
+    note: "Duduk tegak di kursi, dumbbell di bahu setinggi telinga. Tekan ke atas hingga lengan hampir lurus. Turunkan kembali ke bahu dengan kontrol. Core aktif.",
+    why: "Compound bahu — anterior & medial delt sekaligus. Paling mudah di-progressive overload untuk mass",
+    category: "DB Mass", db: true
+  },
+  {
+    name: "DB Lateral Raise",
+    sets: "3", reps: "12–15",
+    note: "Angkat ke samping hingga sejajar bahu, jempol sedikit ke bawah. Beban SANGAT RINGAN. Turunkan pelan 3 detik — fase turun yang bikin kena.",
+    why: "KUNCI V-SHAPE — satu-satunya cara isolasi lateral delt murni. Bahu lebar = badan terlihat lebih besar",
+    category: "DB Mass", db: true
+  },
+  {
+    name: "DB Rear Delt Fly",
+    sets: "3", reps: "12–15",
+    note: "Bungkuk 45–90°, dumbbell tergantung. Angkat ke samping dengan siku sedikit ditekuk hingga sejajar bahu. JANGAN pakai momentum. Beban sangat ringan.",
+    why: "Posterior delt — bahu 3D & cegah postur bungkuk dari terlalu banyak pressing",
+    category: "DB Mass", db: true
+  }
 ];
+
 const pushCooldown = "Chest doorway stretch 45 detik → shoulder cross-body stretch 30 detik/sisi → tricep overhead stretch 30 detik/sisi";
 const pushSkill = "📈 Progression: Incline PU → Full PU → Diamond PU → Archer PU | Pike PU → Handstand Wall Hold";
 
