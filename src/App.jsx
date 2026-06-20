@@ -51,49 +51,41 @@ const pushExercises = [
     note: "Bungkuk 45–90°, dumbbell tergantung. Angkat ke samping dengan siku sedikit ditekuk hingga sejajar bahu. JANGAN pakai momentum. Beban sangat ringan.",
     why: "Posterior delt — bahu 3D & cegah postur bungkuk dari terlalu banyak pressing",
     category: "DB Mass", db: true
-  }
+  },
+  {
+    name: "DB Overhead Tricep Extension",
+    sets: "3", reps: "12",
+    note: "Duduk tegak, pegang satu dumbbell dengan dua tangan di atas kepala. Turunkan ke belakang kepala (siku tetap dekat telinga), angkat kembali. Gerakannya hanya di siku.",
+    why: "Long head triceps — bagian terbesar triceps, tidak bisa dikena maksimal dari dip atau push-up saja",
+    category: "DB Mass", db: true
+  },
 ];
-
 const pushCooldown = "Chest doorway stretch 45 detik → shoulder cross-body stretch 30 detik/sisi → tricep overhead stretch 30 detik/sisi";
 const pushSkill = "📈 Progression: Incline PU → Full PU → Diamond PU → Archer PU | Pike PU → Handstand Wall Hold";
 
 // ===== PULL DAY CONTENT =====
-const pullWarmup = "Dead hang 20 detik → scapular pull-up 8 reps → arm swings → shoulder dislocates pakai handuk";
+const pullWarmup = "Dead hang 20–30 detik → scapular pull-up 8 reps → arm swings → shoulder dislocates pakai handuk";
 const pullExercises = [
   {
-    name: "Dead Hang",
-    sets: "3", reps: "20–30 detik",
-    note: "Gantung di pull-up bar, genggam kuat, biarkan bahu naik alami. Fokus napas dan grip. Ini latihan nyata, bukan sekadar pemanasan.",
-    why: "Grip strength + dekompresi tulang belakang. Grip lemah = pull-up gagal di tengah",
-    category: "Foundation", db: false
+    name: "Negative Pull-Up",
+    sets: "4", reps: "3–5 (turun 5–8 detik)",
+    note: "Naik ke posisi chin over bar pakai kursi atau lompat. Lalu turunkan badan seperlahan mungkin. Target 5–8 detik per rep. Catat waktu tiap minggu.",
+    why: "Skill #1 — cara tercepat bangun kekuatan pull-up dari nol",
+    category: "Progression", db: false
   },
   {
     name: "Australian Row — 3 Variasi Grip",
     sets: "4", reps: "8–12",
     note: "Tubuh lurus, tarik dada ke meja. Rotasi grip tiap set: pronated (telapak bawah) → supinated (telapak atas) → neutral → pilih yang paling kena. Makin rebah = makin susah.",
-    why: "Variasi grip = semua bagian lat terlatih. Kunci sayap lebar untuk V-shape",
-    category: "Main", db: false
-  },
-  {
-    name: "Straight Arm Pull (handuk/tali)",
-    sets: "3", reps: "12–15",
-    note: "Ikat handuk di atas pintu. Pegang kedua ujung, tangan LURUS sepanjang gerakan. Tarik ke bawah hingga sejajar pinggul. Rasakan lat stretch di atas dan kontraksi di bawah.",
-    why: "Isolasi lat murni tanpa bicep bantu — memastikan sayap benar-benar berkembang",
+    why: "Back mass #1 — variasi grip pastikan semua bagian lat terlatih. Kunci sayap lebar untuk V-shape",
     category: "Main", db: false
   },
   {
     name: "DB Bent-Over Row",
     sets: "3", reps: "10–12",
     note: "Bungkuk 45°, punggung LURUS. Tarik dumbbell ke pinggang, tahan 1 detik, turunkan pelan. Jangan ayun badan — kekuatan dari punggung, bukan momentum.",
-    why: "Ketebalan punggung (mid-back, rhomboids) — punggung lebar DAN tebal",
+    why: "Back mass #2 — ketebalan punggung (mid-back, rhomboids). Punggung lebar DAN tebal",
     category: "DB Mass", db: true
-  },
-  {
-    name: "Negative Pull-Up",
-    sets: "3", reps: "3–5 (turun 5–8 detik)",
-    note: "Naik ke posisi chin over bar pakai kursi atau lompat. Lalu turunkan badan seperlahan mungkin. Target 5–8 detik per rep. Catat waktu tiap minggu.",
-    why: "Cara tercepat bangun kekuatan pull-up dari nol",
-    category: "Progression", db: false
   },
   {
     name: "DB Bicep Curl",
@@ -103,24 +95,24 @@ const pullExercises = [
     category: "DB Mass", db: true
   },
   {
-    name: "Reverse Curl (Brachioradialis)",
-    sets: "3", reps: "10–12",
-    note: "Telapak menghadap ke BAWAH. Angkat dumbbell ke atas, turunkan pelan. Pakai beban lebih ringan dari bicep curl. Brachioradialis adalah primary mover di sini, bukan bicep.",
-    why: "Brachioradialis = otot paling dominan di lengan bawah. Reverse curl lebih efektif dari hammer curl untuk otot ini",
-    category: "Forearm", db: true
-  },
-  {
     name: "DB Hammer Curl",
     sets: "3", reps: "10–12",
     note: "Telapak saling berhadapan. Siku tetap di sisi badan. Turunkan pelan 3 detik.",
-    why: "Brachialis & brachioradialis dari sudut berbeda — lengan bawah tebal dari semua sisi",
+    why: "Forearm #1 — brachialis & brachioradialis. Penting banget kalau forearm masih kecil",
+    category: "Forearm", db: true
+  },
+  {
+    name: "Reverse Curl (Brachioradialis)",
+    sets: "3", reps: "10–12",
+    note: "Telapak menghadap ke BAWAH. Angkat dumbbell ke atas, turunkan pelan. Pakai beban lebih ringan dari bicep curl. Brachioradialis adalah primary mover di sini, bukan bicep.",
+    why: "Forearm #2 — brachioradialis paling dominan di lengan bawah. Bagian yang bikin forearm terlihat tebal dekat siku",
     category: "Forearm", db: true
   },
   {
     name: "Wrist Curl",
     sets: "3", reps: "15–20",
     note: "Duduk, lengan bawah di atas paha, telapak ke atas. Turunkan pergelangan ke bawah, kerutkan ke atas setinggi mungkin. Pakai beban sangat ringan. Close to failure di set terakhir.",
-    why: "Forearm flexors — komponen depan lengan bawah yang tebal",
+    why: "Forearm #3 — flexor depan lengan bawah. Lengkapi forearm dari semua sisi biar tulang siku tidak terlalu menonjol",
     category: "Forearm", db: true
   },
   {
