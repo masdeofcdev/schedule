@@ -140,29 +140,15 @@ const legsExercises = [
     name: "DB Romanian Deadlift",
     sets: "3", reps: "10–12",
     note: "Dorong pinggul ke belakang, turunkan dumbbell mengikuti kaki hingga terasa tarikan di hamstring. Punggung LURUS. Dorong pinggul maju saat naik.",
-    why: "Hamstring & glutes — dua otot terbesar di tubuh",
+    why: "Hamstring & glutes — beda otot dari squat, dua otot terbesar di tubuh",
     category: "DB Mass", db: true
   },
   {
     name: "Reverse Lunge",
     sets: "3", reps: "8–10 per kaki",
     note: "Langkah ke BELAKANG. Turunkan lutut belakang hampir ke lantai. Dorong kembali dari kaki depan. Bisa pegang tembok untuk keseimbangan.",
-    why: "Quad + glutes + hip flexor — lunge mundur lebih aman untuk lutut pemula",
+    why: "Unilateral — fix imbalance kiri-kanan, quad + glutes + hip flexor",
     category: "Bodyweight", db: false
-  },
-  {
-    name: "Glute Bridge",
-    sets: "3", reps: "15 (tahan 2 detik di atas)",
-    note: "Berbaring, lutut ditekuk. Tekan tumit ke lantai, angkat pinggul hingga tubuh lurus dari bahu ke lutut. Peras glutes keras di atas.",
-    why: "Aktifkan gluteus maximus — glutes yang kuat = postur lebih baik & kaki lebih berisi",
-    category: "Bodyweight", db: false
-  },
-  {
-    name: "Side-Lying Hip Abduction",
-    sets: "3", reps: "15 per sisi",
-    note: "Berbaring miring, kaki lurus. Angkat kaki atas setinggi pinggul, tahan 1 detik, turunkan pelan. Jaga badan tidak berputar.",
-    why: "Gluteus medius — cegah lutut ambles ke dalam saat squat",
-    category: "Lower Body", db: false
   },
   {
     name: "🔁 SUPERSET: Calf Raise + Toe Raise",
@@ -172,13 +158,6 @@ const legsExercises = [
     category: "Lower Body", db: false
   },
   {
-    name: "Dead Bug",
-    sets: "3", reps: "8–10 per sisi",
-    note: "Berbaring, angkat tangan & lutut 90°. Turunkan tangan kanan & kaki kiri bersamaan, punggung bawah tetap di lantai. Kembali, ganti sisi. PERLAHAN.",
-    why: "Deep core stability — fondasi wajib semua gerakan calisthenics lanjutan",
-    category: "Core", db: false
-  },
-  {
     name: "V-Up (atau Tuck V-Up)",
     sets: "3", reps: "8–12",
     note: "Angkat kaki & badan bersamaan, raih kaki di titik puncak. Jika berat: Tuck V-Up (lutut ditekuk). Turunkan perlahan.",
@@ -186,17 +165,10 @@ const legsExercises = [
     category: "Core", db: false
   },
   {
-    name: "Side Plank Dip",
+    name: "Russian Twist",
     sets: "3", reps: "12–15 per sisi",
-    note: "Dari posisi side plank (siku di lantai), turunkan pinggul hampir ke lantai lalu angkat kembali setinggi mungkin. Gerakkan hanya pinggul — badan tetap lurus. Kerjakan kiri dulu selesai, baru kanan.",
-    why: "Oblique dinamis — jauh lebih efektif dari static side plank karena ada kontraksi & ekstensi penuh tiap rep",
-    category: "Oblique", db: false
-  },
-  {
-    name: "Bicycle Crunch",
-    sets: "3", reps: "10–12 per sisi (pelan)",
-    note: "Tangan di belakang kepala, angkat bahu, bawa siku kanan ke lutut kiri sambil luruskan kaki kanan. Ganti sisi. PELAN — 2 detik per gerakan.",
-    why: "Oblique dinamis + abs tengah — definisi perut samping",
+    note: "Duduk, lutut ditekuk, angkat kaki sedikit dari lantai (atau tetap di lantai untuk pemula). Putar badan ke kiri dan kanan dengan kontrol. Boleh pegang dumbbell ringan. Jangan banting gerakannya.",
+    why: "Oblique dinamis — rotasi penuh = perut samping kena maksimal",
     category: "Oblique", db: false
   },
 ];
