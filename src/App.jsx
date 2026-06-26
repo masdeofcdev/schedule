@@ -5,38 +5,38 @@ const pushWarmup = "10 arm circles → 10 shoulder rolls → 10 wrist circles �
 const pushExercises = [
   {
     name: "Incline Push-Up",
-    sets: "3", reps: "10–15",
-    note: "Tangan di meja/kursi, badan lurus. Turunkan dada ke permukaan, dorong kembali. Makin rendah permukaan = makin susah.",
-    why: "Aktivasi upper chest + pemanasan sendi bahu sebelum gerakan yang lebih berat",
+    sets: "4", reps: "10–15",
+    note: "Tangan di meja/kursi, badan lurus. Turunkan dada ke permukaan, dorong kembali. Makin rendah permukaan = makin susah. Jadikan ini exercise utama, bukan cuma pemanasan.",
+    why: "Upper chest bodyweight — progressive overload dengan turunkan ketinggian tangan perlahan",
     category: "Main", db: false
   },
   {
     name: "Regular Push-Up",
     sets: "4", reps: "8–15",
     note: "Tangan selebar bahu, siku 45°. Turunkan dada sampai 2–3cm dari lantai. Minimal 2 set terakhir close to failure.",
-    why: "Compound utama dada — chest, bahu depan, triceps sekaligus. Ukur progress tiap minggu",
+    why: "Compound utama dada — chest, bahu depan, triceps sekaligus",
     category: "Main", db: false
-  },
-  {
-    name: "DB Incline Press",
-    sets: "3", reps: "10–12",
-    note: "Sandarkan punggung atas di tepi kursi/kasur sudut 30–45°. Dumbbell di bahu, tekan ke atas. Turunkan pelan 3 detik. Terasa lebih di dada atas.",
-    why: "Upper chest dengan beban — DB press bisa di-progressive overload lebih leluasa dari bodyweight",
-    category: "DB Mass", db: true
   },
   {
     name: "Chair Dip",
     sets: "3", reps: "8–12",
-    note: "Tangan di tepi kursi, kaki lurus ke depan. Turunkan badan hingga siku 90°. Condong sedikit ke depan untuk lebih kena dada bawah. Jaga bahu tetap rendah.",
-    why: "Lower chest + triceps compound. Bridges chest dan triceps day dengan satu gerakan",
+    note: "Tangan di tepi kursi, kaki lurus ke depan. Turunkan badan hingga siku 90°. Condong sedikit ke depan untuk lebih kena dada bawah.",
+    why: "Lower chest + triceps compound. Bridges chest dan triceps dengan satu gerakan",
     category: "Bodyweight", db: false
   },
   {
-    name: "DB Shoulder Press",
-    sets: "3", reps: "10–12",
-    note: "Duduk tegak di kursi, dumbbell di bahu setinggi telinga. Tekan ke atas hingga lengan hampir lurus. Turunkan kembali ke bahu dengan kontrol. Core aktif.",
-    why: "Compound bahu — anterior & medial delt sekaligus. Paling mudah di-progressive overload untuk mass",
-    category: "DB Mass", db: true
+    name: "Pike Hold",
+    sets: "3", reps: "20–30 detik",
+    note: "Posisi V terbalik — tangan & kaki di lantai, pinggul setinggi mungkin. TAHAN tanpa gerakan naik turun. Istirahat 60 detik antar set. Target: 3×30 detik nyaman sebelum naik ke Wall Pike Push-Up.",
+    why: "Bangun shoulder stability dari nol — fondasi wajib sebelum bisa melakukan wall pike push-up",
+    category: "Skill Work", db: false
+  },
+  {
+    name: "Wall Pike Push-Up",
+    sets: "3", reps: "8–10",
+    note: "Berdiri ~1 meter dari tembok, tangan di tembok setinggi bahu, badan condong membentuk V. Tekuk siku, turunkan dahi hampir ke tembok, dorong kembali. Makin jauh dari tembok = makin susah. Ini pengganti shoulder press untuk sekarang.",
+    why: "Vertical press bodyweight paling ringan — latih bahu dari atas tanpa beban dumbbell. Naik ke regular pike push-up kalau sudah bisa 3×10 dengan mudah",
+    category: "Progression", db: false
   },
   {
     name: "DB Lateral Raise",
