@@ -34,8 +34,8 @@ const pushExercises = [
   {
     name: "Wall Pike Push-Up",
     sets: "3", reps: "8–10",
-    note: "Berdiri ~1 meter dari tembok, tangan di tembok setinggi bahu, badan condong membentuk V. Tekuk siku, turunkan dahi hampir ke tembok, dorong kembali. Makin jauh dari tembok = makin susah. Ini pengganti shoulder press untuk sekarang.",
-    why: "Vertical press bodyweight paling ringan — latih bahu dari atas tanpa beban dumbbell. Naik ke regular pike push-up kalau sudah bisa 3×10 dengan mudah",
+    note: "Berdiri ~1 meter dari tembok, tangan di tembok setinggi bahu, badan condong membentuk V. Tekuk siku, turunkan dahi hampir ke tembok, dorong kembali. Makin jauh dari tembok = makin susah. Kalau sudah bisa 3×10 dengan mudah → naik ke Regular Pike Push-Up.",
+    why: "Level 1 pike progression — vertical press bodyweight paling ringan untuk bangun bahu dari atas",
     category: "Progression", db: false
   },
   {
@@ -61,7 +61,7 @@ const pushExercises = [
   },
 ];
 const pushCooldown = "Chest doorway stretch 45 detik → shoulder cross-body stretch 30 detik/sisi → tricep overhead stretch 30 detik/sisi";
-const pushSkill = "📈 Progression: Incline PU → Full PU → Diamond PU → Archer PU | Pike PU → Handstand Wall Hold";
+const pushSkill = "🪜 Pike Progression: Pike Hold (sekarang) → Wall Pike PU → Regular Pike PU → Elevated Pike PU (kaki di kursi) → Handstand Wall Hold → HSPU";
 
 // ===== PULL DAY CONTENT =====
 const pullWarmup = "Dead hang 20–30 detik → scapular pull-up 8 reps → arm swings → shoulder dislocates pakai handuk";
@@ -70,22 +70,22 @@ const pullExercises = [
     name: "Negative Pull-Up",
     sets: "4", reps: "3–5 (turun 5–8 detik)",
     note: "Naik ke posisi chin over bar pakai kursi atau lompat. Lalu turunkan badan seperlahan mungkin. Target 5–8 detik per rep. Catat waktu tiap minggu.",
-    why: "Skill #1 — cara tercepat bangun kekuatan pull-up dari nol",
+    why: "Skill #1 — cara tercepat bangun kekuatan pull-up dari nol. Di sinilah pull-up pertamamu terbentuk",
     category: "Progression", db: false
   },
   {
     name: "Australian Row — 3 Variasi Grip",
     sets: "4", reps: "8–12",
-    note: "Tubuh lurus, tarik dada ke meja. Rotasi grip tiap set: pronated (telapak bawah) → supinated (telapak atas) → neutral → pilih yang paling kena. Makin rebah = makin susah.",
-    why: "Back mass #1 — variasi grip pastikan semua bagian lat terlatih. Kunci sayap lebar untuk V-shape",
+    note: "Tubuh lurus, tarik dada ke meja. Rotasi grip tiap set: Set 1 pronated (telapak bawah) → Set 2 supinated (telapak atas, lebih kena bicep) → Set 3 neutral → Set 4 pilih yang paling kena. Makin rebah = makin susah.",
+    why: "Back mass utama + lat — variasi grip pastikan semua bagian punggung & lat terlatih merata",
     category: "Main", db: false
   },
   {
-    name: "DB Bent-Over Row",
-    sets: "3", reps: "10–12",
-    note: "Bungkuk 45°, punggung LURUS. Tarik dumbbell ke pinggang, tahan 1 detik, turunkan pelan. Jangan ayun badan — kekuatan dari punggung, bukan momentum.",
-    why: "Back mass #2 — ketebalan punggung (mid-back, rhomboids). Punggung lebar DAN tebal",
-    category: "DB Mass", db: true
+    name: "Superman Hold",
+    sets: "3", reps: "10–12 (tahan 2 detik)",
+    note: "Tengkurap, tangan lurus ke depan. Angkat dada, tangan, dan kaki bersamaan. Tahan 2 detik, turunkan pelan. Rasakan kontraksi di punggung bawah.",
+    why: "Lower back (erector spinae) — cegah cedera & bangun postur tegak",
+    category: "Lower Back", db: false
   },
   {
     name: "DB Bicep Curl",
@@ -98,29 +98,22 @@ const pullExercises = [
     name: "DB Hammer Curl",
     sets: "3", reps: "10–12",
     note: "Telapak saling berhadapan. Siku tetap di sisi badan. Turunkan pelan 3 detik.",
-    why: "Forearm #1 — brachialis & brachioradialis. Penting banget kalau forearm masih kecil",
+    why: "Forearm #1 — brachialis & brachioradialis. Penting banget untuk forearm yang lebih berisi",
     category: "Forearm", db: true
   },
   {
-    name: "Reverse Curl (Brachioradialis)",
+    name: "Reverse Curl",
     sets: "3", reps: "10–12",
-    note: "Telapak menghadap ke BAWAH. Angkat dumbbell ke atas, turunkan pelan. Pakai beban lebih ringan dari bicep curl. Brachioradialis adalah primary mover di sini, bukan bicep.",
-    why: "Forearm #2 — brachioradialis paling dominan di lengan bawah. Bagian yang bikin forearm terlihat tebal dekat siku",
+    note: "Telapak menghadap ke BAWAH. Angkat dumbbell ke atas, turunkan pelan. Pakai beban lebih ringan dari bicep curl. Brachioradialis adalah primary mover di sini.",
+    why: "Forearm #2 — brachioradialis, bagian yang bikin forearm terlihat tebal dekat siku",
     category: "Forearm", db: true
   },
   {
     name: "Wrist Curl",
     sets: "3", reps: "15–20",
     note: "Duduk, lengan bawah di atas paha, telapak ke atas. Turunkan pergelangan ke bawah, kerutkan ke atas setinggi mungkin. Pakai beban sangat ringan. Close to failure di set terakhir.",
-    why: "Forearm #3 — flexor depan lengan bawah. Lengkapi forearm dari semua sisi biar tulang siku tidak terlalu menonjol",
+    why: "Forearm #3 — flexor depan lengan bawah. Lengkapi forearm dari semua sisi",
     category: "Forearm", db: true
-  },
-  {
-    name: "Superman Hold",
-    sets: "3", reps: "10–12 (tahan 2 detik)",
-    note: "Tengkurap, tangan lurus ke depan. Angkat dada, tangan, dan kaki bersamaan. Tahan 2 detik, turunkan pelan. Rasakan kontraksi di punggung bawah.",
-    why: "Lower back (erector spinae) — cegah cedera deadlift & squat, bangun postur tegak",
-    category: "Lower Back", db: false
   },
 ];
 const pullCooldown = "Lat stretch gantung rileks 20 detik → bicep wall stretch 30 detik/sisi → child's pose → knee-to-chest 30 detik/sisi";
@@ -130,31 +123,38 @@ const pullSkill = "📈 Progression: Australian Row → Negative Pull-Up → Ful
 const legsWarmup = "10 hip circles tiap arah → 10 leg swings per kaki → 10 glute bridge → 30 detik deep squat hold";
 const legsExercises = [
   {
-    name: "DB Goblet Squat",
-    sets: "4", reps: "10–12",
-    note: "Pegang 1 dumbbell di depan dada dengan dua tangan. Squat dalam, siku masuk di antara lutut. Dorong lantai saat naik. Punggung tetap tegak.",
-    why: "Quad + glutes compound — squat paling aman & efektif untuk pemula",
-    category: "DB Mass", db: true
+    name: "Bodyweight Squat",
+    sets: "4", reps: "15–20",
+    note: "Kaki selebar bahu, jari kaki sedikit keluar. Turunkan pinggul sampai sejajar lutut atau lebih dalam. Lutut ikut arah jari kaki. Dada tetap tegak. Progressive overload: tambah reps atau tempo lambat.",
+    why: "Quad + glutes compound utama — bangun pola squat yang benar sebelum naik ke variasi yang lebih susah",
+    category: "Main", db: false
   },
   {
-    name: "DB Romanian Deadlift",
-    sets: "3", reps: "10–12",
-    note: "Dorong pinggul ke belakang, turunkan dumbbell mengikuti kaki hingga terasa tarikan di hamstring. Punggung LURUS. Dorong pinggul maju saat naik.",
-    why: "Hamstring & glutes — beda otot dari squat, dua otot terbesar di tubuh",
-    category: "DB Mass", db: true
+    name: "Bulgarian Split Squat",
+    sets: "3", reps: "8–10 per kaki",
+    note: "Kaki belakang di atas kursi, kaki depan selangkah ke depan. Turunkan lutut belakang hampir ke lantai. Bisa pegang tembok untuk keseimbangan. Ini akan sangat terasa!",
+    why: "Unilateral terbaik — quad + glutes + hamstring sekaligus, fix imbalance kiri-kanan",
+    category: "Main", db: false
   },
   {
     name: "Reverse Lunge",
-    sets: "3", reps: "8–10 per kaki",
-    note: "Langkah ke BELAKANG. Turunkan lutut belakang hampir ke lantai. Dorong kembali dari kaki depan. Bisa pegang tembok untuk keseimbangan.",
-    why: "Unilateral — fix imbalance kiri-kanan, quad + glutes + hip flexor",
+    sets: "3", reps: "10 per kaki",
+    note: "Langkah ke BELAKANG. Turunkan lutut belakang hampir ke lantai. Dorong kembali dari kaki depan. Lebih ringan dari Bulgarian tapi tetap efektif.",
+    why: "Suplemen Bulgarian — lebih mudah dikontrol, bangun koordinasi kaki",
+    category: "Main", db: false
+  },
+  {
+    name: "Glute Bridge",
+    sets: "3", reps: "15 (tahan 2 detik di atas)",
+    note: "Berbaring, lutut ditekuk. Tekan tumit ke lantai, angkat pinggul hingga tubuh lurus dari bahu ke lutut. Peras glutes keras di atas. Untuk lebih susah: single leg glute bridge.",
+    why: "Hamstring + glutes BW terbaik — kompensasi dari tidak ada Romanian Deadlift",
     category: "Bodyweight", db: false
   },
   {
     name: "🔁 SUPERSET: Calf Raise + Toe Raise",
     sets: "3", reps: "15/kaki + 15–20",
-    note: "Calf raise (tumit naik setinggi mungkin) → langsung Toe raise (jari kaki naik, tumit di lantai) → istirahat 60 detik. Antagonist plantarflexion vs dorsiflexion.",
-    why: "Betis depan & belakang sekaligus — antagonist sejati, satu istirahat saat yang lain kerja",
+    note: "Calf raise (tumit naik setinggi mungkin, tahan 1 detik) → langsung Toe raise (jari kaki naik, tumit di lantai) → istirahat 60 detik. Antagonist sejati.",
+    why: "Betis depan & belakang sekaligus dalam waktu efisien",
     category: "Lower Body", db: false
   },
   {
@@ -167,13 +167,13 @@ const legsExercises = [
   {
     name: "Russian Twist",
     sets: "3", reps: "12–15 per sisi",
-    note: "Duduk, lutut ditekuk, angkat kaki sedikit dari lantai (atau tetap di lantai untuk pemula). Putar badan ke kiri dan kanan dengan kontrol. Boleh pegang dumbbell ringan. Jangan banting gerakannya.",
+    note: "Duduk, lutut ditekuk, angkat kaki sedikit dari lantai (atau tetap di lantai untuk pemula). Putar badan ke kiri dan kanan dengan kontrol. Jangan banting gerakannya.",
     why: "Oblique dinamis — rotasi penuh = perut samping kena maksimal",
     category: "Oblique", db: false
   },
 ];
-const legsCooldown = "Hip flexor lunge stretch 40 detik/sisi → hamstring stretch 40 detik/kaki → side stretch berdiri 30 detik/sisi → calf stretch 30 detik/kaki";
-const legsSkill = "📈 Progression: Goblet Squat → Bulgarian Split Squat → Shrimp Squat → Pistol Squat";
+const legsCooldown = "Hip flexor lunge stretch 40 detik/sisi → hamstring stretch 40 detik/kaki → side stretch 30 detik/sisi → calf stretch 30 detik/kaki";
+const legsSkill = "📈 Progression: BW Squat → Bulgarian Split Squat → Shrimp Squat → Pistol Squat Assisted → Full Pistol Squat";
 
 // ===== REST DAY CONTENT (1x per cycle) =====
 const restSectionsContent = [
